@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+    @apply overflow-hidden bg-gray-300
+}
+
+body::-webkit-scrollbar{
+    display: none;
+}
+
+body::-webkit-scrollbar-track{
+    display: none;
+}
+
+.page{
+    @apply h-full rounded-md p-3 overflow-y-scroll
+}
+
+.page::-webkit-scrollbar{
+    display: none;
+}
+
+.banner-container {
+    position: relative;
+    width: 100%;
+    height: 100dvh; /* Set to 100% of the dynamic viewport height */
+    overflow: hidden;
+  }
+  
+  .banner-container div {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-size: 50%;
+    background-position: center; /* Keeps the center of the image visible */
+    background-repeat: no-repeat; /* Prevents image repetition */
+    transition: background-image 1s ease-in-out; /* Optional: smooth transition when changing images */
+  }
+  
