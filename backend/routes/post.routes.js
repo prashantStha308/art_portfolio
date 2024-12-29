@@ -1,10 +1,11 @@
 import { createPost, deletePost, getAllPost, getPostById, updatePost } from "../controllers/post.controller.js";
+import { upload } from "../storage/picture.js";
 import express from "express";
 
 const postRouter = express.Router();
 
 // create a post
-postRouter.post('/create',createPost);
+postRouter.post('/create',upload.single('post'),createPost);
 // Get all possible posts
 postRouter.get('/',getAllPost);
 // Get posts by their ID

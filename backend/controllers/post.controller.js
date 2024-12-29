@@ -1,24 +1,34 @@
 import Post from "../models/post.model.js";
 import mongoose from "mongoose";
+import fs from 'fs';
 
-export const createPost = async ( req , res ) => {
-    const post = req.body;
+export const createPost = async (req, res) => {
+    console.log('In post controller');
+    
+    // Accessing the title from req.body and the image from req.file
+    const body = req.body;
+    const image = req.file;
 
-    // If required fields are not present, the operation can't be further proceeded
-    if( !post.title || !post.imageUrl ){
-        res.status(400).json( { success: false , message: "Required Fields not provided" } );
+    // If required fields are not present, the operation can't proceed
+    if (!body.title || !image) {
+        return res.status(400).json({ success: false, message: "Required Fields not provided" });
     }
 
-    const newPost = new Post(post);
+    const newPost = new Post({
+        ...body,
+        imgUrl: image.path,
+    });
+
     try {
-        // save the newPost
-        newPost.save();
-        res.status(201).json( {success: true , data: newPost} );
+        // Save the newPost
+        await newPost.save();
+        res.status(201).json({ success: true, data: newPost });
     } catch (error) {
-        console.log('Error creating post. Error: ',error.message);
-        res.status(500).json({success: false , message: 'Server Error'})
+        console.log('Error creating post. Error: ', error.message);
+        return res.status(500).json({ success: false, message: 'Server Error' });
     }
-}
+};
+
 
 export const getAllPost = async ( req , res ) => {
     try {
@@ -53,7 +63,25 @@ export const deletePost = async (req,res)=>{
     }
 
     try {
-        await Post.findByIdAndDelete(id);
+        const post = await Post.findByIdAndDelete(id);
+
+        if (!post) {
+            return res.status(404).json({ success: false, message: "Post Not Found" });
+        }
+
+        // Delete the associated image file if imgUrl exists
+        if (post.imgUrl) {
+            // Here, imgUrl stores the full path to the image
+            const imagePath = post.imgUrl; // No need to join, because imgUrl already includes the full path
+            fs.unlink(imagePath, (err) => {
+                if (err) {
+                    console.error("Error deleting image:", err);
+                } else {
+                    console.log("Image deleted successfully.");
+                }
+            });
+        }
+
         res.status(200).json({success:true, message: "Post deleted"});
     } catch (error) {
         res.status(500).json({success:false, message:"Server Error"});

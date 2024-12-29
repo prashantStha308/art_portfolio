@@ -1,28 +1,25 @@
 import mongoose from "mongoose";
 
 export const postScheme = mongoose.Schema({
-    title:{
+    title: {
         type: String,
         required: true
     },
-    description:{
+    description: {
         type: String,
-        required: false,
-        default: "No Descriptions provided"
-    },
-    imageUrl:{
-        type: String,
-        required: true
-    },
-    tags:{
-        type: [String],
         required: false
     },
-    createdAt:{
+    imgUrl:{
+        type: String,
+        required: false
+    },
+    tags: [String],
+    timeCreated:{
         type: Date,
-        default: Date.now
+        default: Date.now()
     }
 });
 
-const Post = mongoose.model('Post',postScheme);
+const Post = mongoose.model('Post',postScheme)
+
 export default Post;

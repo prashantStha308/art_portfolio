@@ -1,8 +1,10 @@
-import React from 'react'
+import ProjectNav from "../components/ProjectNav"
 
 const Projects = () => {
   return (
-    <div>Projects</div>
+    <>
+      <ProjectNav />
+    </>
   )
 }
 

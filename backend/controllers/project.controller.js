@@ -12,7 +12,7 @@ export const getAllProjects = async ( req , res ) => {
 }
 
 export const getProjectById = async ( req , res ) => {
-    const {id} = req.par
+    const {id} = req.params
 
     if( !mongoose.Types.ObjectId.isValid(id) ){
         res.status(404).json({ success: false , message: 'Project not found' });

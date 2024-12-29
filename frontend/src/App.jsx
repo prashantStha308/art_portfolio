@@ -8,9 +8,9 @@ function App() {
     <>
     <BrowserRouter>
       {/* Sidebar and Main Content */}
-      <div className="flex flex-1 gap-3">
+      <div className="grid md:flex md:flex-1">
         <Navbar />
-        <div className="flex-1 overflow-y-auto">
+        <div className="grid md:flex-1 overflow-y-auto">
           <section className="page">
             <AppRoutes />
           </section>
