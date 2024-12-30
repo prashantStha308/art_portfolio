@@ -32,6 +32,24 @@ export const PostStore = create( ( set ) =>({
         } catch (error) {
             console.error( error.message );
         }
+    },
+
+    getAllPosts : async () =>{
+        try {
+            const res = await fetch( '/api/post',{
+                method: 'GET'
+            } );
+
+            if(!res.ok){
+                return { succes: false , data: null , message: "Couldn't retrive datas" }
+            }
+            const data = await res.json();
+            return {  succes: true , data: data.data , message: "Fetched Successfully" };
+
+        } catch (error) {
+            console.error(error.message);
+            return {  succes: false , data: null , message: error.message };
+        }
     }
 
 }) )

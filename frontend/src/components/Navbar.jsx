@@ -4,7 +4,7 @@ import pfp from '../assets/digital/KLEE.png'
 const Navbar = () => {
   return (
     <>
-        <header className='hidden md:grid gap-4 min-h-dvh w-1/6 bg-gray-200 p-8 box-border'>
+        <header className='hidden md:grid gap-4 min-h-dvh w-1/6 bg-gray-200 p-8 box-border content-between'>
             <div className='grid gap-4 h-4/6'>
                 <div>
                     <img src={pfp} alt="pfp" className='rounded-full w-72 aspect-square object-cover object-top' />
@@ -22,13 +22,13 @@ const Navbar = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link to={'/service'}>
-                                Services
+                            <Link to={'/gallery'}>
+                                Gallery
                             </Link>
                         </li>
                         <li>
-                            <Link to={'/contact'}>
-                                Contacts
+                            <Link to={'/service'}>
+                                Services
                             </Link>
                         </li>
                         <li>
@@ -41,7 +41,7 @@ const Navbar = () => {
             </div>
         </header>
 
-        <header className='flex sm:hidden '>
+        <header className='flex sm:hidden'>
             <div>
                 asdklfhjsdlkfj
             </div>

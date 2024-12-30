@@ -1,6 +1,6 @@
 import multer from "multer";
 
-const imagesDir = './backend/images'; 
+const imagesDir = './backend/storage/images';
 
 // Configure multer
 export const postStorage = multer.diskStorage({

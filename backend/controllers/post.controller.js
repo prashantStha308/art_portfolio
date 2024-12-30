@@ -29,7 +29,6 @@ export const createPost = async (req, res) => {
     }
 };
 
-
 export const getAllPost = async ( req , res ) => {
     try {
         const post = await Post.find({});
@@ -72,7 +71,7 @@ export const deletePost = async (req,res)=>{
         // Delete the associated image file if imgUrl exists
         if (post.imgUrl) {
             // Here, imgUrl stores the full path to the image
-            const imagePath = post.imgUrl; // No need to join, because imgUrl already includes the full path
+            const imagePath = post.imgUrl; 
             fs.unlink(imagePath, (err) => {
                 if (err) {
                     console.error("Error deleting image:", err);
@@ -85,6 +84,16 @@ export const deletePost = async (req,res)=>{
         res.status(200).json({success:true, message: "Post deleted"});
     } catch (error) {
         res.status(500).json({success:false, message:"Server Error"});
+    }
+}
+
+export const deleteAllPosts = async ( req , res ) =>{
+    try {
+        await Post.deleteMany();
+        res.status(200).json({ success: true, message: "Deleted Successfully" });
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).json({success: false , message: "Couldn't delete"})
     }
 }
 

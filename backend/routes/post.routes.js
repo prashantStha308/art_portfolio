@@ -1,5 +1,5 @@
-import { createPost, deletePost, getAllPost, getPostById, updatePost } from "../controllers/post.controller.js";
-import { upload } from "../storage/picture.js";
+import { createPost, deleteAllPosts, deletePost, getAllPost, getPostById, updatePost } from "../controllers/post.controller.js";
+import { upload } from "../picture.js";
 import express from "express";
 
 const postRouter = express.Router();
@@ -14,5 +14,8 @@ postRouter.get('/:id',getPostById);
 postRouter.delete('/delete/:id',deletePost);
 // Update posts
 postRouter.patch('/edit/:id',updatePost);
+
+// This deletes alllll the datas
+// postRouter.delete('/deleteall',deleteAllPosts);
 
 export default postRouter;
