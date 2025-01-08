@@ -11,6 +11,7 @@ export const PostStore = create( ( set ) =>({
         if( !newPost.get('title') ){
             return { success: false , message: " Required Fields not filled " };
         }
+        console.log( "FOrmDFAta:",newPost )
 
         try {
             const res = await fetch( "api/post/create" , {
@@ -19,7 +20,7 @@ export const PostStore = create( ( set ) =>({
             } );
             if( !res.ok ){
                 console.log('Failed creation');
-                throw new Error(res.message)
+                return { success: false , message: `Post creation failed. Code: ${res.status}` };
             }
 
             const data = await res.json(); 
@@ -30,7 +31,6 @@ export const PostStore = create( ( set ) =>({
 
         } catch (error) {
             console.error( error.message );
-            return { success: false , message: error.message };
         }
     },
 

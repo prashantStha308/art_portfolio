@@ -2,7 +2,6 @@ import { useEffect , useState } from "react";
 import { PostStore } from '../store/post.store.js';
 import Loading from '../components/Loader.jsx';
 import PictureTile from "../components/PictureTile.jsx";
-
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 
 const Gallery = () => {
@@ -35,10 +34,10 @@ const Gallery = () => {
                     //     }
                     // </div>
 
-                    <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}>
+                    <ResponsiveMasonry columnsCountBreakPoints={{ 350: 2, 750: 3, 900: 3 }}>
                         <Masonry gutter="16px">
                             {post.map(item => (
-                                <PictureTile key={item._id} item={item}  />
+                                <PictureTile key={item._id} item={item} fade={true}  />
                             ))}
                         </Masonry>
                     </ResponsiveMasonry>

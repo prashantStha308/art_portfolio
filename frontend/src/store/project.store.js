@@ -27,6 +27,14 @@ export const ProjectStore = create( (set) =>({
         } catch (error) {
             console.log(error.message)
         }
-    }
+    },
+
+    getAllProjects: () =>{
+
+    },
+
+    getProductById: (id) => {
+
+    },
 
 }) )

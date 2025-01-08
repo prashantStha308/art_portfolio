@@ -55,9 +55,9 @@ const Navbar = () => {
             </div>
         </header>
 
-        <header className='flex sm:hidden'>
-            <div>
-                asdklfhjsdlkfj
+        <header className='flex justify-center sm:hidden'>
+            <div className='text-center text-md text-gray-900 '>
+                Small Screen Navbar
             </div>
         </header>
     </>

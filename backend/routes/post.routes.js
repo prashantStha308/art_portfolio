@@ -5,8 +5,11 @@ import express from "express";
 const postRouter = express.Router();
 // /api/post/....
 
+
+// Don't add thumbnail.single() aaile, we need to correctly change base64 to file
 // create a post
-postRouter.post('/create',upload.single('post') , thumbStorage.single('thumbnail') ,createPost);
+postRouter.post('/create',upload.single('post'),createPost);
+
 // Get all possible posts
 postRouter.get('/',getAllPost);
 // Get posts by their ID
@@ -17,6 +20,6 @@ postRouter.delete('/delete/:id',deletePost);
 postRouter.patch('/edit/:id',updatePost);
 
 // This deletes alllll the posts
-postRouter.delete('/deleteall',deleteAllPosts);
+// postRouter.delete('/deleteall',deleteAllPosts);
 
 export default postRouter;
