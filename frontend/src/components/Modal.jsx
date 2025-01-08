@@ -38,13 +38,14 @@ export default function Modal({ onClose ,  title , message , success }) {
 
                       {
                         success ?
-                        <button data-modal-hide="default-modal" type="button" className={ `text-white  focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center focus:ring-red-300 bg-red-600 hover:bg-red-800 dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-800` } onClick={onClose}>
+                        <button data-modal-hide="default-modal" type="button" className={ `text-white  focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center focus:ring-blue-300 bg-blue-600 hover:bg-blue-800 dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800` } onClick={onClose}>
                         Close
                       </button>
                       :
-                      <button data-modal-hide="default-modal" type="button" className={ `text-white  focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center focus:ring-blue-300 bg-blue-600 hover:bg-blue-800 dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800` } onClick={onClose}>
-                      Close
-                    </button>
+                        <button data-modal-hide="default-modal" type="button" className={ `text-white  focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center focus:ring-red-300 bg-red-600 hover:bg-red-800 dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-800` } onClick={onClose}>
+                        Close
+                      </button>
+
                       }
 
                   </div>

@@ -2,6 +2,7 @@ import e from "express";
 import { getAllProjects , getProjectById , createProject, deleteProject, updateProject } from "../controllers/project.controller.js";
 
 const projectRouter = e.Router();
+// /api/project/...
 
 // Get all Projects
 projectRouter.get('/',getAllProjects);

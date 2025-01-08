@@ -16,6 +16,7 @@ export const createPost = async (req, res) => {
 
     const newPost = new Post({
         ...body,
+        slog: body.title.toLowerCase().replace(/ /g,"-").replace(/[^a-z0-9\-]/g), // /g is a flag, that looks for the pattern all over the pattern and not just once
         imgUrl: image.path,
     });
 

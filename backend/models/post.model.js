@@ -9,7 +9,15 @@ export const postScheme = mongoose.Schema({
         type: String,
         required: false
     },
+    slog:{
+        type: String,
+        required: false
+    },
     imgUrl:{
+        type: String,
+        required: true
+    },
+    thumbnail:{
         type: String,
         required: false
     },

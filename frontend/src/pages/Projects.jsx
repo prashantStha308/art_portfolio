@@ -1,4 +1,5 @@
 import ProjectNav from "../components/ProjectNav"
+import ProjectTiles from "../components/ProjectTiles"
 
 const Projects = () => {
   return (
@@ -9,7 +10,9 @@ const Projects = () => {
 
       <ProjectNav />
 
-      
+      <div className="grid grid-cols-3">
+        <ProjectTiles />
+      </div>
     </div>
   )
 }

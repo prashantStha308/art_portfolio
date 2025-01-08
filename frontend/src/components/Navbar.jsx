@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import pfp from '../assets/digital/KLEE.png'
+import pfp from '../assets/digital/CartoonizingFaces.png'
 
 const Navbar = () => {
   return (
@@ -7,7 +7,7 @@ const Navbar = () => {
         <header className='hidden md:grid gap-4 min-h-dvh w-1/6 bg-gray-200 p-8 box-border content-between'>
             <div className='grid gap-4 h-4/6'>
                 <div>
-                    <img src={pfp} alt="pfp" className='rounded-full w-72 aspect-square object-cover object-top' />
+                    <img src={pfp} alt="pfp" className='rounded-full w-64 aspect-square object-cover' />
                 </div>
                 <nav>
                     <ul id='navbarList' className='grid gap-2 text-lg text-gray-700'>
@@ -17,13 +17,13 @@ const Navbar = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link to={'/project'}>
-                                Projects
+                            <Link to={'/gallery'}>
+                                Gallery
                             </Link>
                         </li>
                         <li>
-                            <Link to={'/gallery'}>
-                                Gallery
+                            <Link to={'/project'}>
+                                Projects
                             </Link>
                         </li>
                         <li>
@@ -36,6 +36,20 @@ const Navbar = () => {
                                 About
                             </Link>
                         </li>
+
+                        {/* Delete those below at production */}
+                        <li>
+                            <Link to={'/upload'}>
+                                Upload 
+                            </Link>
+                        </li>
+
+                        <li>
+                            <Link to={'/createProject'}>
+                                Create Projects 
+                            </Link>
+                        </li>
+
                     </ul>
                 </nav>
             </div>
