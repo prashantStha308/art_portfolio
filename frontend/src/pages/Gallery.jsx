@@ -9,13 +9,18 @@ const Gallery = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-    const fetchPost = async () =>{
-        setLoading(true);
-        await getAllPosts();
-        setLoading(false);
-    }
+        const fetchPost = async () => {
+            // Only fetch posts if they haven't already been loaded
+            if (post.length === 0) {
+                setLoading(true);
+                await getAllPosts();
+                setLoading(false);
+            } else {
+                setLoading(false);
+            }
+        };
     fetchPost();
-    }, [getAllPosts]);
+    }, [getAllPosts , post]);
 
     if(loading) return <Loading />
 
@@ -26,14 +31,6 @@ const Gallery = () => {
             <div>
                 {
                     post && post.length > 0 ?
-                    // <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                    //     {
-                    //         post.map( item =>(
-                    //             <PictureTile key={item._id} item={item} />
-                    //         ) )
-                    //     }
-                    // </div>
-
                     <ResponsiveMasonry columnsCountBreakPoints={{ 350: 2, 750: 3, 900: 3 }}>
                         <Masonry gutter="16px">
                             {post.map(item => (

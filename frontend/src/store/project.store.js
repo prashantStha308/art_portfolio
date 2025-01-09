@@ -2,7 +2,13 @@ import { create } from 'zustand';
 
 export const ProjectStore = create( (set) =>({
     project: [],
+    selectedPost: [],
     setProject: (project) => ( set({project}) ),
+    setSelectedPost: (selectedPost) => ( set({selectedPost}) ),
+
+    selectPost: ( newPost )=>{
+        
+    },
 
     createProject: async (newProject) =>{
         if( !newProject.title ){

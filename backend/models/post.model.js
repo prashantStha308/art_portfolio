@@ -21,6 +21,10 @@ export const postScheme = mongoose.Schema({
         type: String,
         required: false
     },
+    project:[{
+        type: String,
+        required: false
+    }],
     tags: [String],
     timeCreated:{
         type: Date,
