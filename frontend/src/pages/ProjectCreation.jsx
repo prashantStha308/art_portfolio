@@ -28,7 +28,7 @@ const ProjectCreation = () => {
 
   return (
     <div className="relative h-full w-full">
-      { selector && <ImageSelector onClose={closeSelector} setSelected={setSelectedImage} isLoading={loading} post={post ?? null} /> }
+      { selector && <ImageSelector onClose={closeSelector} selectedImage={selectedImage} setSelected={setSelectedImage} isLoading={loading} post={post ?? null} /> }
       <div className="text-3xl font-bold text-gray-800 text-center">Project Creation</div>
       <section>
         <form className="grid gap-4" encType="multipart/form-data">
@@ -42,14 +42,14 @@ const ProjectCreation = () => {
             <textarea name="description" id="projectDescription"></textarea>
           </label>
 
-          <div>
+          <div className='flex gap-8'>
             <label>
               Select Artworks : <button className="text-white py-2 px-4 bg-blue-500 hover:bg-blue-700 active:bg-blue-800 rounded-md" type="button" onClick={()=>(
                 setSelector(true)
               )}> Select </button>
             </label>
 
-            <input type="submit" value="Submit" />
+            <input type="submit" value="Submit" className='text-white py-2 px-4 bg-blue-500 hover:bg-blue-700 active:bg-blue-800 rounded-md' />
           </div>
           
         </form>

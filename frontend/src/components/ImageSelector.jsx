@@ -2,8 +2,17 @@
 
 import PictureTile from './PictureTile.jsx'
 import Loading from './Loader.jsx';
+import { useState } from 'react';
 
-const ImageSelector = ({ onClose , setSelected , isLoading , post }) => {
+const ImageSelector = ({ onClose , selectedImage , setSelected , isLoading , post }) => {
+
+    const [ selectCount , setSelectCount ] = useState([{}]);
+
+    const handleClick = ( id )=>{
+        setSelected( prev =>{
+            prev.includes(id) ? prev.filter((itemId) => itemId !== id) : [...prev, id]
+        } )
+    }
 
 
   return (
@@ -15,7 +24,7 @@ const ImageSelector = ({ onClose , setSelected , isLoading , post }) => {
             </header>
             {
                 isLoading ?
-                <div className=' h-[75%]'>
+                <div className='grid gap-4 h-[75%]'>
                     {
                         post.length > 0 ?
                             (<main className='grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 h-full overflow-y-scroll imageSelector'>

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { FaCheckCircle } from "react-icons/fa";
 
-const PictureTile = ({ item , fade = false , selectMode = false ,width , height }) => {
+const PictureTile = ({ item , fade = false , selectMode = false ,width , height , onSelect }) => {
 
   const [ isSelected , setIsSelected ] = useState(false);
   const [ selectCount , setSelectCount ] = useState(0);
@@ -50,7 +50,7 @@ const PictureTile = ({ item , fade = false , selectMode = false ,width , height 
         </div>
         :
         selectMode ?
-        <div className="h-full w-full">
+        <div className="h-auto w-full">
           {/* blue tick */}
           <div className="absolute top-4 right-2 z-40">
             <FaCheckCircle className= {`text-3xl text-blue-500 bg-white rounded-full ${ isSelected ? 'opacity-100' : 'opacity-0' } transition-all ease-in duration-300` }/>
