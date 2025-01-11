@@ -34,21 +34,62 @@ export const PostStore = create( ( set ) =>({
         }
     },
 
-    getAllPosts : async () =>{
+    getAllPosts : async ( page = 1 , limit = 20 ) =>{
         try {
-            const res = await fetch( '/api/post');
-
+            const res = await fetch( `/api/post?page=${page}&limit=${limit}`);
             if(!res.ok){
                 return { success: false , data: null , message: "Couldn't retrive datas" }
             }
             const data = await res.json();
-            set({ post : data.data });
+            console.log(data)
+            set((state) => ({
+                post: [
+                    ...state.post,
+                    ...data.data.post.filter((newPost) => !state.post.some((oldPost) => oldPost._id === newPost._id)),
+                ],
+            }));
             return {  success: true , data: data.data , message: "Fetched Successfully" };
 
         } catch (error) {
             console.error(error.message);
             return {  success: false , data: null , message: error.message };
         }
+    },
+
+    deletePost: async(pid)=>{
+        const res = await fetch( `api/post/delete/${pid}` , {
+            method: "DELETE"
+        } );
+        const data = await res.json();
+        if( !data.success )
+            return{ success: false , message: data.message };
+        
+        // updates UI immediately without needing to refresh
+        set( state=>({
+            post: state.post.filter( (item)=> item._id !== pid )
+        }) );
+
+        return{ success: true , message: data.message };
+    },
+
+    updatePost: async ( pid , newBody ) => {
+        const res = await fetch( `api/post/edit/${pid}`,{
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(newBody) // Send updated product data here
+        } );
+        const data = await res.json();
+        if( !data.success ){
+            return{ success: false , message: data.message };
+        }
+
+        set(state=>({
+            post: state.post.map( item => (item._id === pid ? data.data : item) )
+        }))
+
+        return{ success: true , message: data.message };
     }
 
 }) )

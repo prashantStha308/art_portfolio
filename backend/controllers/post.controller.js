@@ -31,9 +31,26 @@ export const createPost = async (req, res) => {
 };
 
 export const getAllPost = async ( req , res ) => {
+    console.log("Inside Get All function")
+    const { page = 1} = req.query;
+    const { limit = 10 } = req.query;
+    const parsedPage = Math.max(1, parseInt(page)); 
+    const parsedLimit = Math.max(1, parseInt(limit));
+
     try {
-        const post = await Post.find({});
-        res.status(200).json({success:true , data: post});
+        const post = await Post.find({})
+        .skip(( parsedPage - 1 ) * parsedLimit) //skip fetching previously fetched datas
+        .limit(parsedLimit); //limit items to be fetched
+        const total = await Post.countDocuments(); //count the total number of items in database
+
+        res.status(200).json({success:true ,
+            data: {
+                post: [...post],
+                total: total,
+                currentlyFetched: post.length,
+                hasMore: (parsedPage * parsedLimit) < total
+            },
+        });
     } catch (error) {
         console.log("Error in fetching post: ",error.message);
         res.status(500).json({success:true , message:"Error in Server"});

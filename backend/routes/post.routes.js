@@ -17,7 +17,7 @@ postRouter.get('/:id',getPostById);
 // Delete post
 postRouter.delete('/delete/:id',deletePost);
 // Update posts
-postRouter.patch('/edit/:id',updatePost);
+postRouter.put('/edit/:id',updatePost);
 
 // This deletes alllll the posts
 // postRouter.delete('/deleteall',deleteAllPosts);

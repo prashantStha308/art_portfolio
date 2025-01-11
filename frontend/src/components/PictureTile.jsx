@@ -25,7 +25,8 @@ const PictureTile = ({ item , fade = false , selectMode = false ,width , height 
     alt={item.title}
   />
 
-  const handleSelection = ()=>{
+  const handleSelection = (id)=>{
+    // onSelect(id);
     if( selectCount === 0 ){
       setIsSelected(true);
       setSelectCount(1);
@@ -57,7 +58,7 @@ const PictureTile = ({ item , fade = false , selectMode = false ,width , height 
           </div>
 
           <div className={`${isSelected && 'bg-gray-200 h-full w-full' }`} >
-            <div onClick={handleSelection}>
+            <div onClick={()=>(handleSelection(item._id))}>
               {imgElement}
             </div>
           </div>

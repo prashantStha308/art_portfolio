@@ -7,6 +7,7 @@ import Upload from "./pages/Upload";
 import Gallery from "./pages/Gallery";
 import Post from "./pages/Post";
 import ProjectCreation from "./pages/ProjectCreation";
+import InfiniteScroll from "./Test";
 
 const AppRouter = () => {
   return (
@@ -22,6 +23,7 @@ const AppRouter = () => {
         {/* Hidden from users */}
         <Route path="/upload" element={<Upload />} />
         <Route path="createProject" element= {<ProjectCreation />} />
+        <Route path="test" element= {<InfiniteScroll />} />
     </Routes>
   )
 }

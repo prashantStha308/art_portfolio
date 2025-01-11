@@ -8,7 +8,7 @@ const ImageSelector = ({ onClose , selectedImage , setSelected , isLoading , pos
 
     const [ selectCount , setSelectCount ] = useState([{}]);
 
-    const handleClick = ( id )=>{
+    const handleSelect = ( id )=>{
         setSelected( prev =>{
             prev.includes(id) ? prev.filter((itemId) => itemId !== id) : [...prev, id]
         } )
@@ -30,7 +30,7 @@ const ImageSelector = ({ onClose , selectedImage , setSelected , isLoading , pos
                             (<main className='grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 h-full overflow-y-scroll imageSelector'>
                                 {
                                     post.map( (item) => (
-                                        <PictureTile key={item._id} item={item} width={'20rem'} height={'20rem'} selectMode={true} />
+                                        <PictureTile key={item._id} item={item} width={'20rem'} height={'20rem'} selectMode={true} onSelect={handleSelect} />
                                     ) )
                                 }
                             </main>)
