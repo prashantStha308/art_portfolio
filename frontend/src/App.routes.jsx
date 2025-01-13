@@ -18,7 +18,7 @@ const AppRouter = () => {
         <Route path="/about" element= {<About />} />
         <Route path="/service" element= {<Services />} />
 
-        <Route path="/post/:id" element= {<Post />} />
+        <Route path="/gallery/:slog" element= {<Post />} />
 
         {/* Hidden from users */}
         <Route path="/upload" element={<Upload />} />

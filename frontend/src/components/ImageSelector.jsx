@@ -24,7 +24,7 @@ const ImageSelector = ({ onClose , selectedImage , setSelected , isLoading , pos
             </header>
             {
                 isLoading ?
-                <div className='grid gap-4 h-[75%]'>
+                <div className='grid gap-3 md:m-4 h-[75%]'>
                     {
                         post.length > 0 ?
                             (<main className='grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 h-full overflow-y-scroll imageSelector'>

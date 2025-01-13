@@ -2,7 +2,6 @@ import { useState } from "react";
 import { PostStore } from "../store/post.store";
 import Modal from "../components/Modal";
 import Loading from "../components/Loader";
-import Resizer from 'react-image-file-resizer'
 
 
 const Upload = () => {
@@ -17,35 +16,9 @@ const Upload = () => {
         setIsOpen(false);
     }
 
-    const imageResizer = ( file ) =>{
-        return new Promise( ( resolve , reject ) =>{
-            try {
-                Resizer.imageFileResizer(
-                    file,
-                    750,
-                    'auto',
-                    'JPEG',
-                    100,
-                    0,
-                    (uri)=>resolve(uri),
-                    'base64'
-                )
-            } catch (error) {
-                reject(error)
-            }
-        } )
-    }
-
     const handelForm = async (e) =>{
         e.preventDefault();
         const formData = new FormData( e.target );
-
-        const newImage = await imageResizer(formData.get('post'));
-        // While this is indeed posting the thumbnail in the server, but it's doing so by sending the whole base64 image data, which will slow down users. We need to convert base64 data to jpeg/png and store it within the server.
-        // Hence, find a way to decode the base64 and encode it back to png/jpeg format
-
-        // JPEG ma convert garda pani, it sends base64 data. So above process is must
-        formData.append('thumbnail',newImage);
 
         console.log([...formData])
 
@@ -67,7 +40,7 @@ const Upload = () => {
                 setModalSuccess(false);
             }
         }else{
-            console.log("Required Fields not met");
+            console.error("Required Fields not met");
         }
     }
 

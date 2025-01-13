@@ -1,12 +1,15 @@
 import Post from "../models/post.model.js";
 import mongoose from "mongoose";
 import fs from 'fs';
+import sharp from "sharp";
+import path from "path";
+
 
 export const createPost = async (req, res) => {
     console.log('In post controller');
     
     // Accessing the title from req.body and the image from req.file
-    const body = req.body;
+    const body = req.body; 
     const image = req.file;
 
     // If required fields are not present, the operation can't proceed
@@ -14,13 +17,30 @@ export const createPost = async (req, res) => {
         return res.status(400).json({ success: false, message: "Required Fields not provided" });
     }
 
-    const newPost = new Post({
-        ...body,
-        slog: body.title.toLowerCase().replace(/ /g,"-").replace(/[^a-z0-9\-]/g), // replace spaces with '-' and only have alpha neumeric vales
-        imgUrl: image.path,
-    });
-
     try {
+        // Get the path of the file that is uploaded.
+        const uploadedFilePath = image.path;
+
+        // get the output dir of the thumbnail. Create one if not available
+        const outputDir = path.join('backend' , 'storage' , 'thumbnails');
+        if (!fs.existsSync(outputDir)) {
+          fs.mkdirSync(outputDir, { recursive: true });
+        }
+        // Add the processed file to the thumbnail directory
+        const thumbnailDirPath = path.join(outputDir, `thumb-${Date.now()}.png`);
+    
+        // create a new post
+        const newPost = new Post({
+            ...body,
+            slog: body.title.toLowerCase().replace(/ /g,"-").replace(/[^a-z0-9\-]/g), // replace spaces with '-' and only have alpha neumeric vales
+            imgUrl: uploadedFilePath.replace(/^backend/,""),
+            thumbnail: thumbnailDirPath.replace(/^backend/,""),
+        });
+
+        await sharp(uploadedFilePath).resize(720).toFormat('png').toFile(thumbnailDirPath);
+
+        console.log("OutputDir",thumbnailDirPath);
+
         // Save the newPost
         await newPost.save();
         res.status(201).json({ success: true, data: newPost });
@@ -33,7 +53,7 @@ export const createPost = async (req, res) => {
 export const getAllPost = async ( req , res ) => {
     console.log("Inside Get All function")
     const { page = 1} = req.query;
-    const { limit = 10 } = req.query;
+    const { limit = 20 } = req.query;
     const parsedPage = Math.max(1, parseInt(page)); 
     const parsedLimit = Math.max(1, parseInt(limit));
 
@@ -46,9 +66,13 @@ export const getAllPost = async ( req , res ) => {
         res.status(200).json({success:true ,
             data: {
                 post: [...post],
-                total: total,
-                currentlyFetched: post.length,
-                hasMore: (parsedPage * parsedLimit) < total
+                pageData: {
+                    total: total,
+                    currentlyFetched: post.length,
+                    hasMore: (parsedPage * parsedLimit) < total,
+                    page: parsedPage,
+                    totalPage: Math.ceil( total / parsedLimit )
+                }
             },
         });
     } catch (error) {
@@ -73,6 +97,7 @@ export const getPostById = async ( req , res )=>{
 }
 
 export const deletePost = async (req,res)=>{
+    console.log("inside delete post by id")
     const {id} = req.params
     
     if(!mongoose.Types.ObjectId.isValid(id)){
@@ -86,10 +111,9 @@ export const deletePost = async (req,res)=>{
             return res.status(404).json({ success: false, message: "Post Not Found" });
         }
 
-        // Delete the associated image file if imgUrl exists
-        if (post.imgUrl) {
-            // Here, imgUrl stores the full path to the image
-            const imagePath = post.imgUrl; 
+        // delete image file
+        if (post.imgUrl){
+            const imagePath = "/backend/" + post.imgUrl; 
             fs.unlink(imagePath, (err) => {
                 if (err) {
                     console.error("Error deleting image:", err);
@@ -97,6 +121,18 @@ export const deletePost = async (req,res)=>{
                     console.log("Image deleted successfully.");
                 }
             });
+        }
+        
+        // delete thumbnail file
+        if(post.thumbnail){
+            const thumbPath = "/backend/" + post.thumbnail;
+            fs.unlink( thumbPath , (err) => {
+                if(err){
+                    console.log('Error deleting thumbnail',err)
+                }else{
+                    console.log("Thumbnail deleted successfuly");
+                }
+            } )
         }
 
         res.status(200).json({success:true, message: "Post deleted"});
@@ -106,6 +142,7 @@ export const deletePost = async (req,res)=>{
 }
 
 export const deleteAllPosts = async ( req , res ) =>{
+    console.log("inside delete all function")
     try {
         await Post.deleteMany();
         res.status(200).json({ success: true, message: "Deleted Successfully" });

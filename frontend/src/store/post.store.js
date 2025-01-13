@@ -3,6 +3,7 @@ import { create } from 'zustand';
 export const PostStore = create( ( set ) =>({
 
     post: [],
+    pageData: { total: 0 , currentlyFetched : 0 , hasMore: true , page: 1 , totalPage : 1 },
     setPost : (post) => ( set({post}) ),
 
     // createPost in backend expects an object in body of req. The body MUST have title and image
@@ -42,12 +43,16 @@ export const PostStore = create( ( set ) =>({
             }
             const data = await res.json();
             console.log(data)
+            // set posts in a way that each items are unique
             set((state) => ({
                 post: [
                     ...state.post,
                     ...data.data.post.filter((newPost) => !state.post.some((oldPost) => oldPost._id === newPost._id)),
                 ],
             }));
+            // set pageData
+            set({ pageData: {...data.data.pageData} });
+
             return {  success: true , data: data.data , message: "Fetched Successfully" };
 
         } catch (error) {

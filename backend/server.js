@@ -19,6 +19,7 @@ app.use(cors());
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 app.use('/storage/images', express.static(path.join(__dirname, 'storage/images')));
+app.use('/storage/thumbnails', express.static(path.join(__dirname, 'storage/thumbnails')));
 
 app.use('/api/post', postRouter);
 app.use('/api/project', projectRouter);

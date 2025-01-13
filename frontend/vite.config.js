@@ -14,7 +14,12 @@ export default defineConfig({
       "/storage/images": {
         target: "http://localhost:5000",
         changeOrigin: true
-      }
+      },
+      // Proxy static thumbnail requests to backend
+      "/storage/thumbnails": {
+        target: "http://localhost:5000",
+        changeOrigin: true
+      },
     }
   }
 });

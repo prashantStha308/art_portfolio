@@ -23,6 +23,7 @@ const PictureTile = ({ item , fade = false , selectMode = false ,width , height 
     }}
     src={item.thumbnail}
     alt={item.title}
+    loading="lazy"
   />
 
   const handleSelection = (id)=>{
@@ -50,6 +51,7 @@ const PictureTile = ({ item , fade = false , selectMode = false ,width , height 
           <div className="absolute bg-gradient-to-b from-gray-900 from-10% opacity-60 top-0 left-0 h-full w-full group-hover:opacity-25 transition-all duration-300 z-10"></div>
         </div>
         :
+        // if select mode on xa bhane
         selectMode ?
         <div className="h-auto w-full">
           {/* blue tick */}
@@ -64,6 +66,7 @@ const PictureTile = ({ item , fade = false , selectMode = false ,width , height 
           </div>
         </div>
         :
+        // if kunai effect select xaina
           (imgElement)
       }
     </div>
