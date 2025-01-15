@@ -3,7 +3,7 @@ import { useRef, useState, useEffect } from 'react';
 import { RxHamburgerMenu } from "react-icons/rx";
 import pfp from '../assets/digital/CartoonizingFaces.png';
 
-const Navbar = () => {
+const Navbar = ({ devMode }) => {
   const [isOpen, setIsOpen] = useState(false);
   const navbarRef = useRef();
   const location = useLocation();
@@ -47,14 +47,19 @@ const Navbar = () => {
         <Link to="/about">About</Link>
       </li>
 
-        --- TEMPORARY LINKS ---
+      {
+        devMode &&
+        <>
+          --- TEMPORARY LINKS ---
+          <li className={location.pathname === "/upload" ? "text-pink-500" : ""}>
+            <Link to="/upload">Upload</Link>
+          </li>
+          <li className={location.pathname === "/createProject" ? "text-pink-500" : ""}>
+            <Link to="/createProject">Create Projects</Link>
+          </li>
+        </>
+      }
 
-      <li className={location.pathname === "/upload" ? "text-pink-500" : ""}>
-        <Link to="/upload">Upload</Link>
-      </li>
-      <li className={location.pathname === "/createProject" ? "text-pink-500" : ""}>
-        <Link to="/createProject">Create Projects</Link>
-      </li>
     </ul>
   );
 

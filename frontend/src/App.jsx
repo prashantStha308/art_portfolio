@@ -1,18 +1,22 @@
 import { BrowserRouter } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import AppRouter from "./App.routes";
+import { useState } from "react";
 
 function App() {
+
+  const [ developerMode , setDeveloperMode ] = useState(false);
+
   return (
     <>
       <BrowserRouter>
         {/* Sidebar and Main Content */}
         <div className="grid md:flex md:flex-1 h-screen">
-          <Navbar />
+          <Navbar devMode = {developerMode} />
           <div className="flex-1 overflow-hidden">
             <section className="page">
               {/* Main router of app */}
-              <AppRouter />
+              <AppRouter devMode = {developerMode} />
             </section>
           </div>
         </div>

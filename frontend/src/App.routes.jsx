@@ -9,7 +9,7 @@ import Post from "./pages/Post";
 import ProjectCreation from "./pages/ProjectCreation";
 import InfiniteScroll from "./Test";
 
-const AppRouter = () => {
+const AppRouter = ({ devMode }) => {
   return (
     <Routes>
         <Route path="/" element = {<Home />} />
@@ -21,9 +21,15 @@ const AppRouter = () => {
         <Route path="/gallery/:slog" element= {<Post />} />
 
         {/* Hidden from users */}
-        <Route path="/upload" element={<Upload />} />
-        <Route path="createProject" element= {<ProjectCreation />} />
-        <Route path="test" element= {<InfiniteScroll />} />
+      {
+        devMode &&
+        <>
+          <Route path="/upload" element={<Upload />} />
+          <Route path="createProject" element= {<ProjectCreation />} />
+          <Route path="test" element= {<InfiniteScroll />} />
+        </>
+      }
+
     </Routes>
   )
 }

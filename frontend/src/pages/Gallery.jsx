@@ -16,6 +16,9 @@ const Gallery = () => {
         const fetchPost = async () => {
             console.log("inside fetching data");
             // Only fetch posts if the current post array is empty
+            // Yo garda, page won't reload after you revist the gallery, we need to integrate pageData feri. 
+            // Suruma, post.length ko logic le kaam garos, tespaxi. we can maybe count if aaile ko page ko sabai contents pako xa ki nai
+
             if (post.length === 0) {
                 console.log("fetching data");
                 setLoading(true);
