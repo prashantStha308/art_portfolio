@@ -20,6 +20,6 @@ postRouter.delete('/delete/:id',deletePost);
 postRouter.put('/edit/:id',updatePost);
 
 // This deletes alllll the posts
-// postRouter.delete('/deleteall',deleteAllPosts);
+postRouter.delete('/deleteall',deleteAllPosts);
 
 export default postRouter;

@@ -5,39 +5,20 @@ import PictureTile from "../components/PictureTile.jsx";
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 import ErrorPage from "../components/ErrorPage.jsx";
 
-const Gallery = () => {
+const Gallery = ({ loading = true , error = false , errorMessage , setPage , page }) => {
     const { post , pageData , getAllPosts } = PostStore();
-    const [loading, setLoading] = useState(true);
-    const [ page , setPage ] = useState(1);
-    const [ error , setError ] = useState(false);
-    const [ errorMessage , setErrorMessage ] = useState("");
+    // const [loading, setLoading] = useState(true);
+    // const [ page , setPage ] = useState(1);
+    // const [ error , setError ] = useState(false);
+    // const [ errorMessage , setErrorMessage ] = useState("");
 
     useEffect(() => {
         const fetchPost = async () => {
             console.log("inside fetching data");
-            // Only fetch posts if the current post array is empty
-            // Yo garda, page won't reload after you revist the gallery, we need to integrate pageData feri. 
-            // Suruma, post.length ko logic le kaam garos, tespaxi. we can maybe count if aaile ko page ko sabai contents pako xa ki nai
-
-            if (post.length === 0) {
-                console.log("fetching data");
-                setLoading(true);
-                try {
-                    const res = await getAllPosts(page, 20);
-
-                    if (!res.success || !res.data.post || res.data.post.length === 0) {
-                        setError(true);
-                        setErrorMessage("No Posts Found");
-                    }
-                } catch (error) {
-                    console.log("Error fetching", error);
-                    setError(true);
-                    setErrorMessage(error.message);
-                } finally {
-                    setLoading(false);
-                }
-            }
-        };
+            setLoading(true);
+            await getAllPosts( page , 20 );
+            setLoading(false);
+        }
     
         fetchPost();
     }, [getAllPosts, page]);

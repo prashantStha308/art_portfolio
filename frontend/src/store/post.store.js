@@ -25,7 +25,7 @@ export const PostStore = create( ( set ) =>({
             }
 
             const data = await res.json(); 
-            set((state) => ({ post: [...state.post, data] }));
+            set((state) => ({ post: [...state.post, data.data] }));
     
             console.log("Post Created Successfully");
             return { success: true, message: "Post Created Successfully" };
