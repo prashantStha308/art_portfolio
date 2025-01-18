@@ -61,8 +61,23 @@ export const PostStore = create( ( set ) =>({
         }
     },
 
+    getPostById: async (pid) => {
+        console.log("Getting post with ID:", pid);
+        try {
+            const res = await fetch(`/api/post/${pid}`);
+            const data = await res.json();
+            console.log( "Data:",data );
+            if( !data.success ){
+                throw new Error(data);
+            }
+            return { success: true, data: data.data };
+        } catch (error) {
+            console.log(error.message);
+        }
+    },
+
     deletePost: async(pid)=>{
-        const res = await fetch( `api/post/delete/${pid}` , {
+        const res = await fetch( `/api/post/delete/${pid}` , {
             method: "DELETE"
         } );
         const data = await res.json();
@@ -78,7 +93,7 @@ export const PostStore = create( ( set ) =>({
     },
 
     updatePost: async ( pid , newBody ) => {
-        const res = await fetch( `api/post/edit/${pid}`,{
+        const res = await fetch( `/api/post/edit/${pid}`,{
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"

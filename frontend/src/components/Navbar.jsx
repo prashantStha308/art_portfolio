@@ -34,7 +34,7 @@ const Navbar = ({ devMode }) => {
       <li className={location.pathname === "/" ? "text-pink-500" : ""}>
         <Link to="/">Home</Link>
       </li>
-      <li className={location.pathname === "/gallery" ? "text-pink-500" : ""}>
+      <li className={location.pathname.includes("/gallery") ? "text-pink-500" : ""}>
         <Link to="/gallery">Gallery</Link>
       </li>
       <li className={location.pathname === "/project" ? "text-pink-500" : ""}>

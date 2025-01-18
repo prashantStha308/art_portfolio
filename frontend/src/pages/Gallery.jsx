@@ -1,28 +1,12 @@
-import { useEffect , useState } from "react";
 import { PostStore } from '../store/post.store.js';
 import Loading from '../components/Loader.jsx';
 import PictureTile from "../components/PictureTile.jsx";
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 import ErrorPage from "../components/ErrorPage.jsx";
+import { Link } from 'react-router-dom';
 
 const Gallery = ({ loading = true , error = false , errorMessage , setPage , page }) => {
-    const { post , pageData , getAllPosts } = PostStore();
-    // const [loading, setLoading] = useState(true);
-    // const [ page , setPage ] = useState(1);
-    // const [ error , setError ] = useState(false);
-    // const [ errorMessage , setErrorMessage ] = useState("");
-
-    useEffect(() => {
-        const fetchPost = async () => {
-            console.log("inside fetching data");
-            setLoading(true);
-            await getAllPosts( page , 20 );
-            setLoading(false);
-        }
-    
-        fetchPost();
-    }, [getAllPosts, page]);
-
+    const { post , pageData } = PostStore();
 
     return (
         <div className="min-h-screen">
@@ -41,7 +25,9 @@ const Gallery = ({ loading = true , error = false , errorMessage , setPage , pag
                                         <ResponsiveMasonry columnsCountBreakPoints={{ 350: 2, 750: 3, 900: 4 }}>
                                             <Masonry gutter="16px">
                                             {post.map(item => (
-                                                <PictureTile key={item._id} item={item} fade={true} />
+                                                <Link key={item._id} to={`/gallery/${item._id}`} >
+                                                    <PictureTile item={item} fade={true} />
+                                                </Link>
                                             ))}
                                             </Masonry>
                                         </ResponsiveMasonry>

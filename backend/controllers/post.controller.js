@@ -81,20 +81,28 @@ export const getAllPost = async ( req , res ) => {
     }
 }
 
-export const getPostById = async ( req , res )=>{
+export const getPostById = async (req, res) => {
+    console.log("inside get post by id function");
     const { id } = req.params;
-    if( !mongoose.Types.ObjectId.isValid(id) ){
-        res.status(404).json({ success: false , message: 'Post not found/Invalid ID' });
+    console.log("Received ID from params:", id);
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(404).json({ success: false, message: "Post not found/Invalid ID" });
     }
 
     try {
         const post = await Post.findById(id);
-        res.status(200).json({ success: true , data: post });
+        if (!post) {
+            return res.status(404).json({ success: false, message: "Post not found" });
+        }
+
+        res.status(200).json({ success: true, data: post });
     } catch (error) {
-        console.log(error.message);
-        res.status(500).json({success:true , message:"Error in Server"});
+        console.error("Error fetching post by ID:", error.message);
+        res.status(500).json({ success: false, message: "Error in Server" });
     }
-}
+};
+
 
 export const deletePost = async (req,res)=>{
     console.log("inside delete post by id")

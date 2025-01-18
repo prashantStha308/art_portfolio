@@ -5,7 +5,7 @@ import Projects from "./pages/Projects"
 import About from "./pages/About"
 import Upload from "./pages/Upload";
 import Gallery from "./pages/Gallery";
-import Post from "./pages/Post";
+import PostPage from "./pages/PostPage";
 import ProjectCreation from "./pages/ProjectCreation";
 import InfiniteScroll from "./Test";
 import { useEffect, useState } from "react";
@@ -45,7 +45,7 @@ const AppRouter = ({ devMode }) => {
         <Route path="/about" element= {<About />} />
         <Route path="/service" element= {<Services />} />
 
-        <Route path="/gallery/:slog" element= {<Post />} />
+        <Route path="/gallery/:id" element= {<PostPage />} />
 
         {/* Hidden from users */}
         <Route path="/upload" element={<Upload />} />
