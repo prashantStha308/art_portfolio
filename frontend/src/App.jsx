@@ -5,7 +5,7 @@ import { useState } from "react";
 
 function App() {
 
-  const [ developerMode , setDeveloperMode ] = useState(false);
+  const [ developerMode , setDeveloperMode ] = useState(true);
 
   return (
     <>
