@@ -2,7 +2,7 @@
 import { FaCheckCircle } from "react-icons/fa";
 
 const PictureTile = ({ item , fade = false , selectMode = false ,width , height , selectedList }) => {
-  const selected = selectedList.includes(item);
+  const selected = selectMode ? selectedList.includes(item) : false;
 
   const selectionStyle = {
     transform: 'scale(0.9)',
