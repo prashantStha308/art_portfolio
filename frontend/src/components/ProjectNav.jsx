@@ -1,15 +1,21 @@
+import { Link } from "react-router-dom"
 
-const ProjectNav = () => {
+const ProjectNav = ({ project = [] }) => {
   return (
     <>
       <div className="hidden md:block">
         <nav className="flex w-full justify-center p-8">
             <ul id="navbarList" className="flex justify-evenly w-full text-gray-700 border-b border-b-gray-400">
                 <li>All</li>
-                <li>Eternal Dance</li>
-                <li>Cartooning Faces</li>
-                <li>Speed Paints</li>
-                <li>Commissions</li>
+                {
+                  project.map( item => (
+                    <li key={item._id}>
+                      <Link to={`/project/${item._id}`} >
+                        { item.title }
+                      </Link>
+                    </li>
+                  ) )
+                }
             </ul>
           </nav>
       </div>

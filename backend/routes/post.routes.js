@@ -10,6 +10,9 @@ const postRouter = express.Router();
 // create a post
 postRouter.post('/create',upload.single('post'),createPost);
 
+// This deletes alllll the posts
+postRouter.delete('/deleteall',deleteAllPosts);
+
 // Get all possible posts
 postRouter.get('/',getAllPost);
 // Get posts by their ID
@@ -18,8 +21,5 @@ postRouter.get('/:id',getPostById);
 postRouter.delete('/delete/:id',deletePost);
 // Update posts
 postRouter.put('/edit/:id',updatePost);
-
-// This deletes alllll the posts
-postRouter.delete('/deleteall',deleteAllPosts);
 
 export default postRouter;

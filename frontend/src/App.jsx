@@ -16,7 +16,7 @@ function App() {
           <div className="flex-1 overflow-hidden">
             <section className="page">
               {/* Main router of app */}
-              <AppRouter devMode = {developerMode} />
+              <AppRouter />
             </section>
           </div>
         </div>

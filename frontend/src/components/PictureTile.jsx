@@ -1,12 +1,8 @@
 /* eslint-disable react/prop-types */
-
-import { useState } from "react";
 import { FaCheckCircle } from "react-icons/fa";
 
-const PictureTile = ({ item , fade = false , selectMode = false ,width , height , onSelect }) => {
-
-  const [ isSelected , setIsSelected ] = useState(false);
-  const [ selectCount , setSelectCount ] = useState(0);
+const PictureTile = ({ item , fade = false , selectMode = false ,width , height , selectedList }) => {
+  const selected = selectedList.includes(item);
 
   const selectionStyle = {
     transform: 'scale(0.9)',
@@ -16,7 +12,7 @@ const PictureTile = ({ item , fade = false , selectMode = false ,width , height 
   <img
     className={`object-cover object-center thumb-img ${width ? '' : 'w-full'} ${height ? '' : 'h-auto'}`}
     style={{
-      ...( isSelected && selectionStyle ),
+      ...( selected && selectionStyle ),
       width: width || undefined,
       height: height || undefined,
       transition: 'all 0.15s ease-in',
@@ -26,16 +22,6 @@ const PictureTile = ({ item , fade = false , selectMode = false ,width , height 
     loading="lazy"
   />
 
-  const handleSelection = (id)=>{
-    // onSelect(id);
-    if( selectCount === 0 ){
-      setIsSelected(true);
-      setSelectCount(1);
-    }else{
-      setIsSelected(false);
-      setSelectCount(0);
-    }
-  }
 
   return (
     <div className="relative group">
@@ -56,13 +42,11 @@ const PictureTile = ({ item , fade = false , selectMode = false ,width , height 
         <div className="h-auto w-full">
           {/* blue tick */}
           <div className="absolute top-4 right-2 z-40">
-            <FaCheckCircle className= {`text-3xl text-blue-500 bg-white rounded-full ${ isSelected ? 'opacity-100' : 'opacity-0' } transition-all ease-in duration-300` }/>
+            <FaCheckCircle className= {`text-3xl text-blue-500 bg-white rounded-full ${ selected ? 'opacity-100' : 'opacity-0' } transition-all ease-in duration-300` }/>
           </div>
 
-          <div className={`${isSelected && 'bg-gray-200 h-full w-full' }`} >
-            <div onClick={()=>(handleSelection(item._id))}>
+          <div className={`${selected && 'bg-gray-200 h-full w-full' }`} >
               {imgElement}
-            </div>
           </div>
         </div>
         :

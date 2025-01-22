@@ -3,11 +3,12 @@ import mongoose from "mongoose";
 
 export const getAllProjects = async ( req , res ) => {
     try {
-        const projects = Project.find({});
+        const projects = await Project.find({});
+        console.log(projects);
         res.status(200).json({ success: true , data: projects });
     } catch (error) {
         console.log(error.message);
-        res.status(500).json({success:true , message:"Error in Server"});
+        res.status(500).json({success:false , message: error.message});
     }
 }
 
@@ -28,7 +29,12 @@ export const getProjectById = async ( req , res ) => {
 }
 
 export const createProject = async ( req , res ) => {
+    console.log("Inside create Project");
+
     const body = req.body;
+
+    console.log("Body:",body);
+
     if( !body.title ){
         res.status(400).json({ success: false , message: "Required Fields not provided" });
     }
@@ -38,7 +44,7 @@ export const createProject = async ( req , res ) => {
         res.status(201).json( {success: true , data: newProject} );
     } catch (error) {
         console.log(error.message);
-        res.status(500).json({success:true , message:"Error in Server"});
+        res.status(500).json({success:false , message: error.message});
     }
 }
 
@@ -70,5 +76,16 @@ export const updateProject = async ( req , res ) =>{
     } catch (error) {
         console.log(error.message);
         res.status(500).json({success:false, message:"Server Error"});
+    }
+}
+
+export const deleteAllProjects = async ( req , res  ) => {
+    console.log("inside delete all function(PROJECT)")
+    try {
+        await Project.deleteMany({});
+        res.status(200).json({ success: true, message: "Deleted Successfully" });
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).json({success: false , message: "Couldn't delete"})
     }
 }
