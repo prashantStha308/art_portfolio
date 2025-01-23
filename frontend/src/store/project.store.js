@@ -33,8 +33,6 @@ export const ProjectStore = create( (set) =>({
     },
 
     getAllProjects: async () =>{
-        console.log("INside Get all Project funciton")
-
         try {
             const res = await fetch( '/api/project/' );
             if(!res.ok){
@@ -51,8 +49,21 @@ export const ProjectStore = create( (set) =>({
 
     },
 
-    getProductById: (id) => {
+    getProjectById: async (id) => {
+        console.log( "Inside get product by Id function" );
+        try {
+            const res = await fetch(`/api/project/${id}`);
+            if( !res.ok ){
+                throw new Error(`Error with status code: ${res.status}`);
+            }
+            const data = await res.json();
+            console.log(data)
+            return { success: true , data: data.data , message: "Successfully fetched Projects" }
 
+        } catch (error) {
+            console.error("Error fetching projects: ", error);
+            return { success: false , message: error.message };
+        }
     },
 
 }) )

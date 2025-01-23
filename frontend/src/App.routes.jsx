@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import { PostStore } from "./store/post.store";
 import { ProjectStore } from "./store/project.store";
 import ProjectPage from "./pages/ProjectPage";
+import ProjectPostPage from "./pages/ProjectPostPage";
 
 const AppRouter = () => {
 
@@ -67,6 +68,7 @@ const AppRouter = () => {
 
         <Route path="/gallery/:id" element= {<PostPage />} />
         <Route path="/project/:id" element={ <ProjectPage /> } />
+        <Route path="/project/:id/post/:pid" element= {<ProjectPostPage />} />
 
         {/* Hidden from users */}
         <Route path="/upload" element={<Upload />} />

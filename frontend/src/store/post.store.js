@@ -42,7 +42,6 @@ export const PostStore = create( ( set ) =>({
                 return { success: false , data: null , message: "Couldn't retrive datas" }
             }
             const data = await res.json();
-            console.log(data)
             // set posts in a way that each items are unique
             set((state) => ({
                 post: [

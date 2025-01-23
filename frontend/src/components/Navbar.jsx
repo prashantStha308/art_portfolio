@@ -101,7 +101,7 @@ const Navbar = ({ devMode }) => {
           </div>
         </Link>
         <div>
-          <h1 className="text-center text-lg text-gray-600 font-bold capitalize">
+          <h1 className="text-center text-sm text-gray-600 font-bold capitalize text-wrap break-all">
             {location.pathname === "/"
               ? "home"
               : location.pathname.replace(/^\//, "")}

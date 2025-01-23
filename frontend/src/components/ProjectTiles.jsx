@@ -27,7 +27,7 @@ const ProjectTiles = ({ item }) => {
         </div>
 
         {/* FADE DIV */}
-        <div className="absolute bg-gradient-to-b from-gray-900 from-10% opacity-60 top-0 left-0 h-full w-full group-hover:opacity-45 transition-all duration-300 z-10 rounded-sm"> </div>
+        <div className="absolute bg-gray-900 from-10% opacity-0 top-0 left-0 h-full w-full group-hover:opacity-60 transition-all duration-300 z-10 rounded-sm"> </div>
 
       </div>
     </div>
