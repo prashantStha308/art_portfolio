@@ -57,8 +57,8 @@ export const ProjectStore = create( (set) =>({
                 throw new Error(`Error with status code: ${res.status}`);
             }
             const data = await res.json();
-            console.log(data)
-            return { success: true , data: data.data , message: "Successfully fetched Projects" }
+            console.log(data);
+            return { success: true , data: data.data , message: "Successfully fetched Projects" };
 
         } catch (error) {
             console.error("Error fetching projects: ", error);

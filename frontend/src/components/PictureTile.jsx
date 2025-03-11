@@ -28,7 +28,7 @@ const PictureTile = ({ item , fade = false , selectMode = false ,width , height 
       {
         fade ?
         <div className="relative object-contain">
-          <div className="absolute text-2xl text-center font-bold top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] text-gray-200 z-20 transition-all duration-[0.35s] opacity-0 mt-[15%] group-hover:opacity-100 group-hover:mt-0 capitalize">
+          <div className="absolute text-2xl text-center top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] text-gray-200 z-20 transition-all duration-[0.35s] opacity-0 mt-[15%] group-hover:opacity-100 group-hover:mt-0 capitalize">
             {item.title}
           </div>
 

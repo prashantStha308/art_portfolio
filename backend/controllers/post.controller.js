@@ -171,7 +171,7 @@ export const updatePost  = async ( req , res ) => {
     try {
         const updatedPost = await Post.findByIdAndUpdate(id , updates , {new: true});
         // { new: true } is an option in findByIdAndUpdate that makes it so that it returns a new object instead of original one
-        res.status(200).json({ success: true , data: updatedPost });
+        res.status(200).json({ success: true , data: updatedPost , message: "Post updated Successfully" });
     } catch (error) {
         console.log(error.message);
         res.status(500).json({success:false, message:"Server Error"});

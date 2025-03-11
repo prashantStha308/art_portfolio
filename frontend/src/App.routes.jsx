@@ -16,11 +16,11 @@ import ProjectPostPage from "./pages/ProjectPostPage";
 
 const AppRouter = () => {
 
-    const [loading, setLoading] = useState(false);
-    const [ page , setPage ] = useState(1);
-    const [ error , setError ] = useState(false);
-    const [ errorMessage , setErrorMessage ] = useState("");
-    const { getAllPosts } = PostStore();
+    // const [loading, setLoading] = useState(false);
+    // const [ page , setPage ] = useState(1);
+    // const [ error , setError ] = useState(false);
+    // const [ errorMessage , setErrorMessage ] = useState("");
+    // const { getAllPosts } = PostStore();
 
     const [ pLoading , setPLoading ] = useState(false);
     const [ pPage , setPPage ] = useState(1);
@@ -28,20 +28,20 @@ const AppRouter = () => {
     const [ pErrorMessage , setPErrorMessage ] = useState("");
     const { getAllProjects } = ProjectStore();
 
-    useEffect( ()=>{
-      async function fetchPosts() {
-        setLoading(true);
-        try {
-          await getAllPosts( page );
-        } catch (error) {
-          setError(true);
-          setErrorMessage(error.message);
-        } finally{
-          setLoading(false);
-        }
-      }
-      fetchPosts();
-    } , [ getAllPosts , page ] );
+    // useEffect( ()=>{
+    //   async function fetchPosts() {
+    //     setLoading(true);
+    //     try {
+    //       await getAllPosts( page , 15 );
+    //     } catch (error) {
+    //       setError(true);
+    //       setErrorMessage(error.message);
+    //     } finally{
+    //       setLoading(false);
+    //     }
+    //   }
+    //   fetchPosts();
+    // } , [ getAllPosts , page ] );
 
     useEffect( ()=>{
       async function fetchProject() {
@@ -61,7 +61,7 @@ const AppRouter = () => {
   return (
     <Routes>
         <Route path="/" element = {<Home />} />
-        <Route path="/gallery" element={<Gallery loading={loading} error={error} errorMessage={errorMessage} setPage={setPage} page={page} />} />
+        <Route path="/gallery" element={<Gallery />} />
         <Route path="/project" element= {<Projects loading={pLoading} error={pError} errorMessage={pErrorMessage} />} />
         <Route path="/about" element= {<About />} />
         <Route path="/service" element= {<Services />} />
@@ -72,7 +72,7 @@ const AppRouter = () => {
 
         {/* Hidden from users */}
         <Route path="/upload" element={<Upload />} />
-        <Route path="createProject" element= {<ProjectCreation loading={loading} />} />
+        <Route path="createProject" element= {<ProjectCreation />} />
         <Route path="test" element= {<InfiniteScroll />} />
 
     </Routes>
