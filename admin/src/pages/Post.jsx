@@ -79,8 +79,8 @@ const Post = () => {
         <div className="p-4 opacity-0 "></div>
       </header>
 
-      <section className="flex justify-center" >
-        <div className="grid lg:flex gap-2" >
+      <section className="flex gap-3 justify-center" >
+        <div className="grid lg:flex gap-2 items-center" >
           
           <div>
             <img src={targetPost.thumbnail} alt={ targetPost.title + "'s thumbnail" } width={450} />

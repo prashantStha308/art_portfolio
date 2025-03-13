@@ -2,18 +2,18 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { usePostStore } from "../store/post.store";
 import { FaMagnifyingGlass } from "react-icons/fa6";
+import { FaRegArrowAltCircleUp } from "react-icons/fa";
 import Tile from "../components/Tile";
+import Loading from "../components/Loader";
 
 const PostManager = () => {
 
   const { posts = [] , getAllPost } = usePostStore();
   const [postItem, setPostItem] = useState([]);
-  const [ searching , isSearching ] = useState(false);
-  const [ filteredItem , setFilteredItem ] = useState([]);
   const [ searchWord , setSearchWord ] = useState("");
 
   const showFilteredPosts = ( keyword ) => {
-    setPostItem( posts.filter( item => item.title.toLowerCase().includes(keyword) || item._id.includes(keyword) && item ) );
+    setPostItem( posts.filter( item => item.title.toLowerCase().includes(keyword.toLowerCase()) || item._id.includes(keyword) && item ) );
   }
 
   const handleInput = (e) => {
@@ -37,9 +37,25 @@ const PostManager = () => {
     loadPosts();
   }, [getAllPost]);
 
+  if( postItem.length === 0 ){
+    return (
+      <div className="min-h-screen max-w-screen flex justify-center items-center" >
+        <Loading />
+      </div>
+    )
+  }
+
   return (
-    <div className="p-4 grid items-center align-middle">
-        <header className="flex justify-between items-center m-4 gap-2">
+    <div className="scroll-smooth">
+      <a href="#top">
+        <div className="bg-white/20 text-2xl rounded-full fixed bottom-4 right-8 z-20">
+          <FaRegArrowAltCircleUp size={45} />
+
+          <p className="sr-only"> Go To Top </p>
+        </div>
+      </a>
+      <div id="top" className="p-4 grid items-center align-middle ">
+        <header className="flex justify-between items-center m-4 gap-2 ">
 
           <h1 className=" hidden md:block md:text-lg lg:text-2xl font-bold text-blue-500"> Post Manager </h1>
 
@@ -60,6 +76,7 @@ const PostManager = () => {
           </div>
 
         </header>
+
         <section>
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-2" >
             {
@@ -71,6 +88,7 @@ const PostManager = () => {
             }
           </div>
         </section>
+      </div>
     </div>
   );
 };

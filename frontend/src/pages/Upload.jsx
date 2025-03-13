@@ -84,7 +84,8 @@ const Upload = () => {
                                 <input type="file" name="post" id="post" accept="image/*" className="input-field" required />
                             </label>
                         </div>
-
+                        
+                        {/* Thumbnail. This is hidden */}
                         <div className="hidden">
                             <label className="block mb-2 text-sm font-medium">
                                 Thumbnail:

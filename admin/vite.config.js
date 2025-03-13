@@ -26,6 +26,6 @@ export default defineConfig({
         changeOrigin: true
       },
     },
-    allowedHosts:['1085-2400-1a00-bd11-3ffd-71c8-6eb4-b577-2ad4.ngrok-free.app']
+    allowedHosts:['5f98-2400-1a00-bd11-3ffd-8acb-71d0-a33c-5d3c.ngrok-free.app']
   }
 })

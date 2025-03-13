@@ -1,7 +1,7 @@
 export default function Loading({ styles, inline = false }) {
     return (
         <div
-            className={`flex justify-center items-center ${
+            className={`flex justify-center items-center bg-white/5 backdrop-blur-2xl rounded-2xl ${
                 inline ? 'h-6 w-full' : 'h-40 w-40 fixed top-1/2'
             } ${styles}`}
         >

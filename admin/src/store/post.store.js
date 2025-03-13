@@ -7,7 +7,7 @@ const PostStore = create( (set) =>({
 
     createPost: async ( newPost ) => {
         // newPost is a formData object
-        if( !newPost.get('title') ){
+        if( !newPost.get('title') || !newPost.get('post') ){
             return { success: false , message: " Required Fields not filled " };
         }
         try {

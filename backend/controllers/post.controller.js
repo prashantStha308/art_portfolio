@@ -6,11 +6,13 @@ import path from "path";
 
 
 export const createPost = async (req, res) => {
-    console.log('In post controller');
     
     // Accessing the title from req.body and the image from req.file
     const body = req.body; 
     const image = req.file;
+
+    console.log("body:",body);
+    console.log( "file: ", image );
 
     // If required fields are not present, the operation can't proceed
     if (!body.title || !image) {
@@ -39,19 +41,16 @@ export const createPost = async (req, res) => {
 
         await sharp(uploadedFilePath).resize(720).toFormat('png').toFile(thumbnailDirPath);
 
-        console.log("OutputDir",thumbnailDirPath);
-
         // Save the newPost
         await newPost.save();
         res.status(201).json({ success: true, data: newPost });
     } catch (error) {
-        console.log('Error creating post. Error: ', error.message);
+        console.error('Error creating post. Error: ', error.message);
         return res.status(500).json({ success: false, message: 'Server Error' });
     }
 };
 
 export const getAllPost = async ( req , res ) => {
-    console.log("Inside Get All function")
     const { page = 1} = req.query;
     const { limit = 20 } = req.query;
     const parsedPage = Math.max(1, parseInt(page)); 
@@ -76,15 +75,13 @@ export const getAllPost = async ( req , res ) => {
             },
         });
     } catch (error) {
-        console.log("Error in fetching post: ",error.message);
+        console.error("Error in fetching post: ",error.message);
         res.status(500).json({success:true , message:"Error in Server"});
     }
 }
 
 export const getPostById = async (req, res) => {
-    console.log("inside get post by id function");
     const { id } = req.params;
-    console.log("Received ID from params:", id);
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(404).json({ success: false, message: "Post not found/Invalid ID" });
@@ -105,9 +102,7 @@ export const getPostById = async (req, res) => {
 
 
 export const deletePost = async (req,res)=>{
-    console.log("inside delete post by id")
     const {id} = req.params;
-    console.log(id);
     
     if(!mongoose.Types.ObjectId.isValid(id)){
         return res.status(404).json({success:false, message:"Post Not Found/ Invalid ID"})
@@ -137,7 +132,7 @@ export const deletePost = async (req,res)=>{
             const thumbPath = "/backend/" + post.thumbnail;
             fs.unlink( thumbPath , (err) => {
                 if(err){
-                    console.log('Error deleting thumbnail',err)
+                    console.error('Error deleting thumbnail',err)
                 }else{
                     console.log("Thumbnail deleted successfuly");
                 }
@@ -151,7 +146,6 @@ export const deletePost = async (req,res)=>{
 }
 
 export const deleteAllPosts = async ( req , res ) =>{
-    console.log("inside delete all function")
     try {
         await Post.deleteMany();
         res.status(200).json({ success: true, message: "Deleted Successfully" });
@@ -174,7 +168,7 @@ export const updatePost  = async ( req , res ) => {
         // { new: true } is an option in findByIdAndUpdate that makes it so that it returns a new object instead of original one
         res.status(200).json({ success: true , data: updatedPost , message: "Post updated Successfully" });
     } catch (error) {
-        console.log(error.message);
+        console.error(error.message);
         res.status(500).json({success:false, message:"Server Error"});
     }
 }
