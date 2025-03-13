@@ -106,7 +106,8 @@ export const getPostById = async (req, res) => {
 
 export const deletePost = async (req,res)=>{
     console.log("inside delete post by id")
-    const {id} = req.params
+    const {id} = req.params;
+    console.log(id);
     
     if(!mongoose.Types.ObjectId.isValid(id)){
         return res.status(404).json({success:false, message:"Post Not Found/ Invalid ID"})

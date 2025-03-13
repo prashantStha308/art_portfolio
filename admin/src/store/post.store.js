@@ -11,7 +11,7 @@ const PostStore = create( (set) =>({
             return { success: false , message: " Required Fields not filled " };
         }
         try {
-            const res = await axios.post( "api/post/create" , newPost );
+            const res = await axios.post( "/api/post/create" , newPost );
             if( res.status !== 201 ){
                 throw new Error(`Error occured while fetching with status code: ${res.status}`);
             }
@@ -27,7 +27,7 @@ const PostStore = create( (set) =>({
     getAllPost: async ()=>{
 
         try {
-            const res = await axios.get( "api/post" );
+            const res = await axios.get( "/api/post?limit=240" );
             if( res.status !== 200 ){
                 throw new Error( "Error fetching posts" );
             }
@@ -47,28 +47,33 @@ const PostStore = create( (set) =>({
         }
     },
 
-    getPostById: async ( id ) => {
+    getPostById: async (id) => {
         try {
-            
-            const res = await axios.get( `api/post/${id}` );
-            if( res.status !== 200 ){
-                throw new Error( "Error fetching posts" );
-            }
-            const data = res.data;
+            const res = await axios.get(`/api/post/${id}`); // Ensure base URL is correctly set
+    
+            const data = res.data?.data; // Extract `data` safely
+    
             set((state) => ({
-                posts: state.posts.find((post) => post._id === data.data._id) ? state.posts : [...state.posts, data.data]
+                posts: state.posts.some((post) => post._id === data._id)
+                    ? state.posts.map((post) => (post._id === data._id ? data : post))
+                    : [...state.posts, data], 
             }));
-
-            return {  success: true , data: data.data , message: "Fetched Successfully" };
+    
+            return { success: true, data, message: "Fetched Successfully" };
         } catch (error) {
-            return { success: false , data: null , message: error.response?.data?.message || error.message || "Something went wrong" };
+            return {
+                success: false,
+                data: null,
+                message: error.response?.data?.message || error.message || "Something went wrong",
+            };
         }
     },
+
 
     updatePost: async ( id , newData ) => {
         try {
             
-            const res = await axios.put( `api/post/edit/${id}` , newData );
+            const res = await axios.put( `/api/post/edit/${id}` , newData );
             if( res.status !== 200 ){
                 throw new Error( "Failed to Update the post" );
             }
@@ -87,20 +92,20 @@ const PostStore = create( (set) =>({
         }
     },
 
-    deletePost: async ( id ) => {
+    deletePost: async (id) => {
         try {
-            const res = await axios.delete( `api/post/delete/${id}` );
-            if( res.status != 200 ){
-                throw new Error( "Failed to delete the Post" );
+            const res = await axios.delete(`/api/post/delete/${id}`);
+            if (res.status !== 200) {
+                throw new Error("Failed to delete the Post");
             }
-
+    
             set((state) => ({
                 posts: state.posts.filter((item) => item._id !== id)
             }));
-
-            return { success: true , message: "Successfully Deleted the Post" };
+    
+            return { success: true, message: "Successfully Deleted the Post" };
         } catch (error) {
-            return { success: false , message: error.response?.data?.message || error.message || "Something went wrong" };
+            return { success: false, message: error.response?.data?.message || error.message || "Something went wrong" };
         }
     },
 
