@@ -1,11 +1,12 @@
 import { BrowserRouter , Routes , Route } from "react-router-dom"
-import PostManager from "./pages/PostManager.jsx"
-import ProjectManager from "./pages/ProjectManager.jsx"
-import RedirectPage from "./pages/RedirectPage.jsx"
+import PostManager from "./pages/main/PostManager.jsx"
+import ProjectManager from "./pages/main/ProjectManager.jsx"
+import RedirectPage from "./pages/utils/RedirectPage.jsx"
 import Post from "./pages/Post.jsx"
 import Project from "./pages/Project.jsx"
 import CreatePost from "./pages/subDirs/CreatePost.jsx"
 import CreateProject from "./pages/subDirs/CreateProject.jsx"
+import Home from "./pages/main/Home.jsx"
 
 function App() {
 
@@ -13,7 +14,7 @@ function App() {
     <main>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={ <RedirectPage to={"/post"} /> } />
+          <Route path="/" element={ <Home /> } />
           <Route path="/post" element={ <PostManager /> } />
           <Route path="/project" element={ <ProjectManager /> } />
 

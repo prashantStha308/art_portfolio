@@ -1,6 +1,6 @@
 import { FaCheckCircle } from "react-icons/fa";
 
-const Tile = ({ item , fade = false , selectMode = false ,width , height , selectedList }) => {
+const Tile = ({ item , type ,  fade = false , selectMode = false ,width , height , selectedList }) => {
   const selected = selectMode ? selectedList.includes(item) : false;
 
   const selectionStyle = {
@@ -42,6 +42,7 @@ const Tile = ({ item , fade = false , selectMode = false ,width , height , selec
                     <p className="text-sm"> <span className="text-amber-500" > Title </span> : {item.title} </p>
                     <p className="text-sm"> <span className="text-amber-500" > ID </span> : <span  style={{fontSize: "0.8rem"}}> {item._id} </span> </p>
                     <p className="text-sm"> <span className="text-amber-500" > Time Created </span> : {item.timeCreated} </p>
+                    <p className="text-sm"> <span className="text-amber-500" > Type </span> : { type || "Undefined" } </p>
                 </div>
 
             </div>
@@ -54,6 +55,7 @@ const Tile = ({ item , fade = false , selectMode = false ,width , height , selec
                 <p className="text-sm"> <span className="text-amber-500" > Title </span> : {item.title} </p>
                 <p className="text-sm"> <span className="text-amber-500" > ID </span> : <span  style={{fontSize: "0.8rem"}}> {item._id} </span> </p>
                 <p className="text-sm"> <span className="text-amber-500" > Time Created </span> : {item.timeCreated} </p>
+                <p className="text-sm"> <span className="text-amber-500" > Type </span> : { type || "Undefined" } </p>
             </div>
           </div>
       }

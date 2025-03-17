@@ -14,6 +14,7 @@ postRouter.post('/create',upload.single('post'),createPost);
 postRouter.delete('/deleteall',deleteAllPosts);
 
 // Get all possible posts
+// "/api/post?limit=__page=__"
 postRouter.get('/',getAllPost);
 // Get posts by their ID
 postRouter.get('/:id',getPostById);

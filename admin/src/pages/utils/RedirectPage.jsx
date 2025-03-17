@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import ErrorPage from "./ErrorPage";
-import Loading from "../components/Loader";
+import Loading from "../../components/Loader";
 import { useState, useEffect } from "react";
 
 const RedirectPage = ({ to }) => {
