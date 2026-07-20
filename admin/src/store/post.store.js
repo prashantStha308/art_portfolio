@@ -11,7 +11,7 @@ const PostStore = create( (set) =>({
             return { success: false , message: " Required Fields not filled " };
         }
         try {
-            const res = await axios.post( "/api/post/create" , newPost );
+            const res = await axios.post( "/api/post" , newPost );
             if( res.status !== 201 ){
                 throw new Error(`Error occured while fetching with status code: ${res.status}`);
             }
@@ -73,7 +73,7 @@ const PostStore = create( (set) =>({
     updatePost: async ( id , newData ) => {
         try {
             
-            const res = await axios.put( `/api/post/edit/${id}` , newData );
+            const res = await axios.put( `/api/post/${id}` , newData );
             if( res.status !== 200 ){
                 throw new Error( "Failed to Update the post" );
             }
@@ -94,7 +94,7 @@ const PostStore = create( (set) =>({
 
     deletePost: async (id) => {
         try {
-            const res = await axios.delete(`/api/post/delete/${id}`);
+            const res = await axios.delete(`/api/post/${id}`);
             if (res.status !== 200) {
                 throw new Error("Failed to delete the Post");
             }

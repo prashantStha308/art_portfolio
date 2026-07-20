@@ -21,6 +21,18 @@ export const postScheme = mongoose.Schema({
         type: String,
         required: false
     },
+    width:{
+        type: Number,
+        required: true,
+    },
+    height:{
+        type: Number,
+        required: true,
+    },
+    color:{
+        type: String,
+        default: "#ffffff",
+    },
     project:[{
         type: String,
         required: false

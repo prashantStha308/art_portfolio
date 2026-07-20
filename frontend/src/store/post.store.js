@@ -35,30 +35,26 @@ export const PostStore = create( ( set ) =>({
         }
     },
 
-    getAllPosts : async ( page = 1 , limit = 20 ) =>{
-        try {
-            const res = await fetch( `/api/post?page=${page}&limit=${limit}`);
-            if(!res.ok){
-                return { success: false , data: null , message: "Couldn't retrive datas" }
-            }
-            const data = await res.json();
-            // set posts in a way that each items are unique
-            set((state) => ({
-                post: [
-                    ...state.post,
-                    ...data.data.post.filter((newPost) => !state.post.some((oldPost) => oldPost._id === newPost._id)),
-                ],
-            }));
-            // set pageData
-            set({ pageData: {...data.data.pageData} });
-
-            return {  success: true , data: data.data , message: "Fetched Successfully" };
-
-        } catch (error) {
-            console.error(error.message);
-            return {  success: false , data: null , message: error.message };
+getAllPosts: async (page = 1, limit = 20) => {
+    // eslint-disable-next-line no-useless-catch
+    try {
+        const res = await fetch(`/api/post?page=${page}&limit=${limit}`);
+        if (!res.ok) {
+            throw new Error(`Couldn't retrieve posts. Status: ${res.status}`);
         }
-    },
+        const data = await res.json();
+        set((state) => ({
+            post: [
+                ...state.post,
+                ...data.data.post.filter((newPost) => !state.post.some((oldPost) => oldPost._id === newPost._id)),
+            ],
+        }));
+        set({ pageData: { ...data.data.pageData } });
+        return { success: true, data: data.data, message: "Fetched Successfully" };
+    } catch (error) {
+        throw error;
+    }
+},
 
     getPostById: async (pid) => {
         console.log("Getting post with ID:", pid);

@@ -1,28 +1,31 @@
 import { BrowserRouter } from "react-router-dom";
-import Navbar from "./components/Navbar";
+import Sidebar from "./components/Sidebar";
+import BottomNavbar from "./components/BottomNavbar";
+
 import AppRouter from "./App.routes";
-import { useState } from "react";
+import QueryProvider from "./config/QueryProvider.jsx";
 
 function App() {
 
-  const [ developerMode , setDeveloperMode ] = useState(true);
+	return (
+		<>
+			<BrowserRouter>
+				<QueryProvider>
 
-  return (
-    <>
-      <BrowserRouter>
-        {/* Sidebar and Main Content */}
-        <div className="grid md:flex md:flex-1 h-screen">
-          <Navbar devMode = {developerMode} />
-          <div className="flex-1 overflow-hidden">
-            <section className="page">
-              {/* Main router of app */}
-              <AppRouter />
-            </section>
-          </div>
-        </div>
-      </BrowserRouter>
-    </>
-  );
+				<main className="flex flex-col md:flex-row md:flex-1 h-screen overflow-hidden">
+				    <Sidebar />
+
+				    <section className="flex-1 page px-2 overflow-y-auto">
+				        <AppRouter />
+				    </section>
+				    
+				    <BottomNavbar />
+				</main>
+
+				</QueryProvider>
+			</BrowserRouter>
+		</>
+	);
 }
 
 

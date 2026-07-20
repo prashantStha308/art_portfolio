@@ -11,32 +11,81 @@ const ProjectStore = create( (set) => ({
                 throw new Error("Required Fields not filled");
             }
             const res = await axios.post( "/api/project/create" , newProject );
-            if( res.status != 201 ){
-                throw new Error(`Failed createing project with status: ${res.status}`);
+            const data = res.data;
+            if( !data.success ){
+                throw new Error( data?.message || "Unexpected Error Occurred" );
             }
+            set( (state) => ({ projects: [...state.projects , data.data] }) );
 
-            set( (state) => ({ projects: [...state.projects , newProject] }) );
-
-            return { success: true , message: "Created Project Successfully" };
+            return { success: true , data: data.data , message: "Created Project Successfully" };
         } catch (error) {
-            return { success: false , message: error.response?.message || error.message || "Unexpected error occured" };
+            return { success: false , message: error.response?.data?.message || error.message || "Unexpected error occured" };
         }
     },
 
     getAllProject: async() => {
         try {
             const res = await axios.get("/api/project");
-            if( res.status != 200 ){
-                throw new Error(`Failed to fetch projects with status ${res.status}`);
-            }
             const data = res.data;
-            set( state => ({ projects: [...state.projects , ...data.data.filter( dataPost => !state.projects.some( item => item._id === dataPost._id ) ) ] }) );
+            if( !data.success ){
+                throw new Error( data?.message || "Unexpected Error Occurred" );
+            }
+            // only store unique datas, avoid duplication
+            set( state => ({ projects: [...state.projects , ...data.data.filter( dataProject => !state.projects.some( item => item._id === dataProject._id ) ) ] }) );
 
             return { success: true , data: data.data };
         } catch (error) {
-            return { success: false , message: error.response?.message || error.message || "Unexpected error occured" };
+            return { success: false , message: error.response?.data?.message || error.message || "Unexpected error occured" };
         }
-    }
+    },
+
+    getProjectById: async (id) => {
+        try {
+            const res = await axios.get(`/api/project/${id}`);
+            const data = res.data;
+            if( !data.success ){
+                throw new Error( data?.message || "Unexpected Error Occurred" )
+            }
+        //   only store if data is not already in projects array
+          set( (state) => ({ projects: state.projects.some( item => item._id === data._id ) ? state.projects : [ ...state.projects , data ] }) );
+
+          return { success: true , data: data.data }
+        } catch (error) {
+          return { success: false, message: error.response?.data?.message || error.message || "Unexpected error occurred" };
+        }
+      },
+
+      updateProject: async( id , body ) => {
+        try {
+            if( !body.title ){
+                throw new Error("Required Fields not filled");
+            }
+            const res = await axios.put(`/api/project/edit/${id}` , body);
+            const data = res.data;
+            if( !data.success ){
+                throw new Error( data?.message || "Unexpected Error Occurred" );
+            }
+            // replace the old data with new data
+            set( state=> ({ projects: state.projects.map( item => item._id === id ? data : item )}) );
+            return { success: true , message: "Project Updated Successfully!!" };
+        } catch (error) {
+          return { success: false, message: error.response?.data?.message || error.message || "Unexpected error occurred" };
+        }
+      },
+
+      deleteProject: async(id) => {
+        try {
+            const res = await axios.delete(`/api/project/delete/${id}`);
+            const data = res.data;
+            if( !data.success ){
+                throw new Error( data?.message || "Unexpected Error Occurred" );
+            }
+            set( state => ({ projects: state.projects.filter( item => item._id !== id ) }) );
+            return { success: true , message: "Project Deleted Successfully!!" };
+        } catch (error) {
+          return { success: false, message: error.response?.data?.message || error.message || "Unexpected error occurred" };
+        }
+      }
 
 }) );
 

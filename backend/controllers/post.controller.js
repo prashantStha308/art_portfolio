@@ -22,6 +22,7 @@ export const createPost = async (req, res) => {
     try {
         // Get the path of the file that is uploaded.
         const uploadedFilePath = image.path;
+        const imageMeta = await shart(uploadedFilePath).metadata();
 
         // get the output dir of the thumbnail. Create one if not available
         const outputDir = path.join('backend' , 'storage' , 'thumbnails');
@@ -37,6 +38,8 @@ export const createPost = async (req, res) => {
             slog: body.title.toLowerCase().replace(/ /g,"-").replace(/[^a-z0-9\-]/g), // replace spaces with '-' and only have alpha neumeric vales
             imgUrl: uploadedFilePath.replace(/^backend/,""),
             thumbnail: thumbnailDirPath.replace(/^backend/,""),
+            height: imageMeta.height,
+            width: imageMeta.width
         });
 
         await sharp(uploadedFilePath).resize(720).toFormat('png').toFile(thumbnailDirPath);
@@ -58,15 +61,16 @@ export const getAllPost = async ( req , res ) => {
 
     try {
         const post = await Post.find({})
-        .skip(( parsedPage - 1 ) * parsedLimit) //skip fetching previously fetched datas
-        .limit(parsedLimit); //limit items to be fetched
-        const total = await Post.countDocuments(); //count the total number of items in database
+        .skip(( parsedPage - 1 ) * parsedLimit)
+        .limit(parsedLimit);
+        const total = await Post.countDocuments();
 
         res.status(200).json({success:true ,
             data: {
                 post: [...post],
                 pageData: {
                     total: total,
+                    totalFetched: ((parsedPage - 1) * parsedLimit) + post.length,
                     currentlyFetched: post.length,
                     hasMore: (parsedPage * parsedLimit) < total,
                     page: parsedPage,

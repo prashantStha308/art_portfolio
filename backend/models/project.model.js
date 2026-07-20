@@ -11,7 +11,10 @@ const projectSchema = mongoose.Schema({
         required: false,
         default: "No Descriptions provided"
     },
-    posts:[postScheme],
+    posts:[{
+        type: mongoose.Schema.ObjectId,
+        ref: "Post"
+    }],
     tags:{
         type: [String],
         required: false

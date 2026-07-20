@@ -1,11 +1,15 @@
 import { Link } from "react-router-dom";
 import ProjectNav from "../components/ProjectNav"
 import ProjectTiles from "../components/ProjectTiles"
+
 import { ProjectStore } from "../store/project.store"
 import Loading from "../components/Loader";
 
-const Projects = ({ loading = true , error = false , errorMessage }) => {
+const Projects = () => {
   const { project } = ProjectStore();
+
+
+
   return (
     <div className="grid gap-4">
       <div>

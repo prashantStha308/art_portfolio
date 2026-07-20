@@ -42,6 +42,7 @@ const ProjectManager = () => {
       try {
         setLoading(true);
         const res = await getAllProject();
+        console.log(res);
         if( !res.success ){
           throw new Error( res.message );
         }
@@ -89,13 +90,13 @@ const ProjectManager = () => {
             projectItem.length === 0
             ?
               <div className="flex justify-center items-center p-18" >
-                <h1 className="text-left text-3xl w-96"> No Post found with name or ID: "{searchWord}" </h1>
+                <h1 className="text-left text-3xl w-96"> No Project found with name or ID: "{searchWord}" </h1>
               </div>
             :
               <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-2" >
                 {
                   projectItem.map( ( item , index ) => (
-                    <Link key={index} to={`/postpage/${item._id}`} >
+                    <Link key={index} to={`/projectpage/${item._id}`} >
                       <Tile item={item} type={"Project"} />
                     </Link>
                   ) )

@@ -7,7 +7,19 @@ import { connectDB } from "./config/db.js";
 import postRouter from "./routes/post.routes.js";
 import projectRouter from "./routes/project.routes.js";
 
-config();
+import { dirname, join } from "path";
+
+const _dirname = dirname(fileURLToPath(import.meta.url));
+
+if (process.env.NODE_ENV === "production") {
+    console.log("Running in Production mode");
+    config({ path: join(_dirname, "../.env") });
+} else {
+    console.log("Running in Development mode");
+    config({ path: join(_dirname, "../dev.env") });
+}
+
+
 const PORT = process.env.PORT;
 const app = express();
 

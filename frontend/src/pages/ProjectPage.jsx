@@ -7,6 +7,7 @@ import PictureTile from "../components/PictureTile.jsx";
 import ErrorPage from '../components/ErrorPage.jsx'
 
 const ProjectPage = () => {
+    
     const { id } = useParams();
     const { getProjectById } = ProjectStore();
 
@@ -47,11 +48,14 @@ const ProjectPage = () => {
                 <div className="px-4 py-5">
                     <ResponsiveMasonry columnsCountBreakPoints={{ 350: 2, 750: 3, 900: 4 }}>
                         <Masonry gutter="16px">
-                        {posts.map(item => (
-                            <Link key={item._id} to={`/project/${id}/post/${item._id}`} >
-                                <PictureTile item={item} fade={true} />
-                            </Link>
-                        ))}
+
+                        {
+                            posts.map(item => (
+                                <Link key={item._id} to={`/project/${id}/post/${item._id}`} >
+                                    <PictureTile item={item} fade={true} />
+                                </Link>
+                            ))
+                        }
                         </Masonry>
                     </ResponsiveMasonry>
                 </div>
