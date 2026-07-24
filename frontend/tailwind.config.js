@@ -7,6 +7,10 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  fontFamily: {
+    mono: ['"Space Mono"', 'monospace'],
+    sans: ['Ubuntu', 'sans-serif'],
+  },
   theme: {
     extend: {
       colors:{

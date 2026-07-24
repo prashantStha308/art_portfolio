@@ -5,19 +5,18 @@ import {
 } from "@tanstack/react-query";
 
 import {
-    getAllProject,
+    getAllProjects,
     getProjectById,
     createProject,
     updateProject,
     deleteProject,
 } from "../api/project.api.js";
 
-
 const projectQueryKey = "project";
 
 export const useGetAllProjects = ({ page= 1, limit= 20} = {}) => {
     return useQuery({
-        queryFn: () => getAllProject({page,limit}),
+        queryFn: () => getAllProjects({page,limit}),
         queryKey:[projectQueryKey, {page,limit}]
     })
 }

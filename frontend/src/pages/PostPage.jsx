@@ -1,7 +1,9 @@
 import { useParams } from 'react-router-dom'
-import { PostStore } from '../store/post.store';
 import { useEffect, useState } from 'react';
-import Loading from '../components/Loader';
+
+import { PostStore } from '../store/post.store';
+
+import Loading from '../components/Loaders/Loader';
 
 const PostPage = () => {
     const {id} = useParams();
@@ -30,7 +32,7 @@ const PostPage = () => {
       {
         loading && <Loading />
       }
-      <img src={post?.imgUrl} alt={post?.title + " thumbnail"} loading='lazy' />
+      <img src={post?.image?.src || post?.imgUrl} alt={post?.title + " thumbnail"} loading='lazy' />
     </div>
   )
 }

@@ -30,7 +30,7 @@ export const updatePost = async(id, body)=>{
 
 
 export const deletePost = async(id)=>{
-	const res = await axios.get(ROUTES.POST.DELETE(id));
+	const res = await axios.delete(ROUTES.POST.DELETE(id));
 
 	return res.data.data;
 }

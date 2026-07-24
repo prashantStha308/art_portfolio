@@ -1,14 +1,15 @@
-import Banner from "../components/Banner";
+import HomeHero from "./Home/HomeHero.jsx";
+import ReadMe from "./Home/ReadMe.jsx";
 
-const Home = () => {
 
-  return (
-    <>
-      <div className="absolute bg-purple-500 top-0 bottom-0 left-24 ml-2 right-0 h-full w-full opacity-20 mix-blend-color-dodge z-10 pointer-events-none" />
+export default function Home() {
+	return (
+		<section className="relative flex flex-col items-center gap-36 h-full w-full pl-1">
 
-      <Banner />
-    </>
-  );
+			<HomeHero />
+
+			<ReadMe />
+
+		</section>
+	);
 }
-
-export default Home;

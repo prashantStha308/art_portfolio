@@ -4,10 +4,12 @@
 
 :root {
   --color-bg: 255 255 255;
+  --grid-line-color: 0 0 0;
 }
 
 .dark {
   --color-bg: 23 23 23;
+  --grid-line-color: 255 255 255; 
 }
 
 *,

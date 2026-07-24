@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { postScheme } from "./post.model.js";
 
 const projectSchema = mongoose.Schema({
     title:{
@@ -11,10 +10,6 @@ const projectSchema = mongoose.Schema({
         required: false,
         default: "No Descriptions provided"
     },
-    posts:[{
-        type: mongoose.Schema.ObjectId,
-        ref: "Post"
-    }],
     tags:{
         type: [String],
         required: false

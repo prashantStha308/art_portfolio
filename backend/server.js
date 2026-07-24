@@ -1,26 +1,15 @@
 import express from "express";
-import { config } from "dotenv";
 import cors from 'cors';
 import path from "path";
-import { fileURLToPath } from 'url';
+
 import { connectDB } from "./config/db.js";
+import { PORT } from "./config/env.config.js";
+
 import postRouter from "./routes/post.routes.js";
 import projectRouter from "./routes/project.routes.js";
 
-import { dirname, join } from "path";
-
-const _dirname = dirname(fileURLToPath(import.meta.url));
-
-if (process.env.NODE_ENV === "production") {
-    console.log("Running in Production mode");
-    config({ path: join(_dirname, "../.env") });
-} else {
-    console.log("Running in Development mode");
-    config({ path: join(_dirname, "../dev.env") });
-}
 
 
-const PORT = process.env.PORT;
 const app = express();
 
 // Get the current directory path
@@ -29,6 +18,7 @@ const __dirname = path.resolve();
 app.use(cors());
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ extended: true, limit: "50mb" }));
+
 app.use('/storage/images', express.static(path.join(`${__dirname}/backend/`, 'storage/images')));
 app.use('/storage/thumbnails', express.static(path.join(`${__dirname}/backend/`, 'storage/thumbnails')));
 

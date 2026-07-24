@@ -13,9 +13,20 @@ export const postScheme = mongoose.Schema({
         type: String,
         required: false
     },
-    imgUrl:{
-        type: String,
-        required: true
+    project:{
+        type: mongoose.Types.ObjectId,
+        ref: "Project",
+        default: null
+    },
+    image:{
+        publicId:{
+            type: String,
+            required: true
+        },
+        src:{
+            type: String,
+            required: true            
+        }
     },
     thumbnail:{
         type: String,
@@ -33,10 +44,6 @@ export const postScheme = mongoose.Schema({
         type: String,
         default: "#ffffff",
     },
-    project:[{
-        type: String,
-        required: false
-    }],
     tags: [String],
     timeCreated:{
         type: Date,

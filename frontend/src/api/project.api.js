@@ -1,4 +1,4 @@
-import {axios} from "axios";
+import axios from "axios";
 import ROUTES from "./routes";
 
 export const getAllProjects = async(query)=>{
@@ -22,15 +22,15 @@ export const createProject = async(body)=>{
 }
 
 
-export const updateProject = async(id)=>{
-	const res = await axios.get(ROUTES.PROJECT.UPDATE(id));
+export const updateProject = async(id, body)=>{
+	const res = await axios.put(ROUTES.PROJECT.UPDATE(id),body);
 
 	return res.data.data;
 }
 
 
 export const deleteProject = async(id)=>{
-	const res = await axios.get(ROUTES.PROJECT.DELETE(id));
+	const res = await axios.delete(ROUTES.PROJECT.DELETE(id));
 
 	return res.data.data;
 }

@@ -1,9 +1,10 @@
-import { useParams } from "react-router-dom"
-import { ProjectStore } from "../store/project.store.js";
 import { useEffect, useState } from "react";
+import { useParams, Link  } from "react-router-dom"
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
-import { Link } from 'react-router-dom';
-import PictureTile from "../components/PictureTile.jsx";
+
+import { ProjectStore } from "../store/project.store.js";
+
+import PictureTile from "../components/tiles/PictureTile.jsx";
 import ErrorPage from '../components/ErrorPage.jsx'
 
 const ProjectPage = () => {

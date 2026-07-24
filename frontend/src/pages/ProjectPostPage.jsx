@@ -1,7 +1,8 @@
 import { Link, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import Loading from '../components/Loader';
-import { ProjectStore } from '../store/project.store';
+
+import Loading from '../components/Loaders/Loader';
+import { ProjectStore } from '../store/project.store.js';
 import ErrorPage from '../components/ErrorPage';
 
 const ProjectPostPage = () => {
