@@ -1,11 +1,12 @@
 import { Routes , Route } from "react-router-dom";
 
 import Home from "./pages/Home"
-import Services from "./pages/Services"
 import Projects from "./pages/Projects"
 import About from "./pages/About"
 import Gallery from "./pages/Gallery";
 import PostPage from "./pages/PostPage";
+
+import ResumePage from "./pages/ResumePage";
 
 import ProjectPage from "./pages/ProjectPage";
 import ProjectPostPage from "./pages/ProjectPostPage";
@@ -21,7 +22,7 @@ const AppRouter = () => {
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/project" element= {<Projects/>} />
         <Route path="/about" element= {<About />} />
-        <Route path="/service" element= {<Services />} />
+        <Route path="/resume" element= {<ResumePage />} />
 
         <Route path="/gallery/:id" element= {<PostPage />} />
         <Route path="/project/:id" element={ <ProjectPage /> } />

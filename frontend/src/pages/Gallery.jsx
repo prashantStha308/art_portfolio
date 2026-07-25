@@ -79,8 +79,9 @@ const Gallery = () => {
                             photos={photos}
                             defaultContainerWidth={typeof window !== "undefined" ? window.innerWidth : 400}
                             columns={(containerWidth) => {
-                                if (containerWidth < 450) return 2; 
-                                if (containerWidth < 1080) return 3;
+                                if (containerWidth < 610) return 2; 
+                                if (containerWidth < 900) return 3;
+                                if (containerWidth < 1080) return 4;
                                 return 5;
                             }}
                             spacing={8}

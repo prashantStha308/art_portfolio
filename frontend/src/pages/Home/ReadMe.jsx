@@ -51,6 +51,7 @@ export default function ReadMe() {
 
 	return (
 		<motion.section
+			id="readMe"
 			initial={{ opacity: 0, y: 12 }}
 			animate={{ opacity: 1, y: 0 }}
 			transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}

@@ -1,57 +1,49 @@
-import {useState, useEffect} from "react";
 import { Link, useLocation } from 'react-router-dom';
 
 import {
 	Home,
 	GalleryHorizontalEnd,
 	FolderKanban,
+	FileChartColumnIncreasing,
 	// Settings
 	Sun,
 	Moon,
 } from "lucide-react"
-import pfp from '/assets/digital/Sketch.png';
 
 import ProfilePicture from "../UI/ProfilePicture.jsx";
-
+import ToggleThemeButton from "../buttons/ToggleThemeButton";
 
 
 export default function Sidebar(){
 	const location = useLocation();
-	const [isDark, setIsDark] = useState(() => {
-		if (typeof window === 'undefined') return false;
-		return (
-			localStorage.theme === 'dark' ||
-			(!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
-		);
-	});
-
-	useEffect(() => {
-		document.documentElement.classList.toggle('dark', isDark);
-		localStorage.theme = isDark ? 'dark' : 'light';
-	}, [isDark]);
-
-	const toggleTheme = () => setIsDark((prev) => !prev);
 
 	const routes = [
 		{
 			name: "home", href: "/",
-			icon: <Home size={24} />,
+			icon: <Home size={20} />,
 			isActive: location.pathname === "/",
 			// isActive: true,
 		},
 		{
 			name: "gallery",
 			href: "/gallery",
-			icon: <GalleryHorizontalEnd size={24} />,
+			icon: <GalleryHorizontalEnd size={20} />,
 			isActive: location.pathname.includes("/gallery")
 		},
 		{
 			name: "projects", 
 			href: "/project",
-			icon: <FolderKanban size={24} />, 
+			icon: <FolderKanban size={20} />, 
 			isActive: location.pathname === "/project"
 		},
+		{
+			name: "resume",
+			href: "/resume",
+			icon: <FileChartColumnIncreasing size={20} />,
+			isActive: location.pathname === "/resume"
+		},
 	];
+
 
 	return(
 		<aside
@@ -62,13 +54,13 @@ export default function Sidebar(){
 				<div className="mt-1 flex flex-col gap-2" >
 					<img 
 						src={"/self-portrait.jpeg"} alt="pfp"
-						className="rounded-full aspect-square object-cover w-16"
+						className="rounded-full aspect-square object-cover w-14"
 					/>
 
 					<div className="h-0.5 w-full rounded-full bg-purple-500/45" />
 				</div>
 
-			<section className=" flex flex-col justify-center items-center gap-8" >
+			<section className=" flex flex-col justify-center items-center gap-4" >
 
 				{
 					routes.map((item, index) => (
@@ -77,7 +69,7 @@ export default function Sidebar(){
 							className={`flex flex-col items-center ${item.isActive ? " bg-purple-500/75 text-white" : " hover:bg-purple-500/40 hover:text-white"}  p-3 rounded-lg transition-all ease-in duration-150`}
 						>
 							{item.icon}
-							<span className="capitalize text-[0.7rem]" >
+							<span className="capitalize text-[0.6rem]" >
 								{item.name}
 							</span>
 						</Link>
@@ -90,13 +82,8 @@ export default function Sidebar(){
 
 				<div className="h-0.5 w-full rounded-full bg-purple-500/45" />
 
-				<button
-					onClick={toggleTheme}
-					aria-label="Toggle theme"
-					className="p-3 rounded-lg hover:bg-purple-500/40 hover:text-white transition-all ease-in duration-150 cursor-pointer"
-				>
-					{isDark ? <Sun size={24} /> : <Moon size={24} />}
-				</button>
+				<ToggleThemeButton />
+
 			</section>
 
 		</aside>

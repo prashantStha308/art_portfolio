@@ -7,6 +7,7 @@ import GithubLogo from "../icons/GithubLogo";
 import LinkedInLogo from "../icons/LinkedInLogo";
 import GmailIcon from "../icons/GmailIcon";
 
+import useBreakpoint from "../../hooks/useBreakpoint.jsx";
 
 
 // eslint-disable-next-line react/prop-types
@@ -51,6 +52,8 @@ export default function SubNav(){
 	const [currentLocation, setCurrentLocation] = useState("Prashant Shrestha");
 	const location = useLocation();
 
+    const isMobile = useBreakpoint(640);
+
 	useEffect(()=>{
 		if( location.pathname.includes("gallery") ){
 			setCurrentLocation("Gallery");
@@ -75,7 +78,7 @@ export default function SubNav(){
                             target='_blank'
                             className='cursor-pointer hover:text-amber-500 hover:opacity-75'
                         >
-                            <InstagramIcon size={18} />
+                            <InstagramIcon size={ isMobile ? 12 : 18} />
                         </a>
 
                         <ScrollingText currentLocation={currentLocation} />
@@ -88,7 +91,7 @@ export default function SubNav(){
                             target='_blank'
                             className='cursor-pointer hover:text-amber-500'
                         >
-                            <GmailIcon size={18 } />
+                            <GmailIcon size={ isMobile ? 12 : 18 } />
                         </a>
 
                         <a
@@ -96,7 +99,7 @@ export default function SubNav(){
                             target='_blank'
                             className='cursor-pointer hover:text-amber-500'
                         >
-                            <GithubLogo size={20} />
+                            <GithubLogo size={isMobile ? 14 : 20} />
                         </a>
 
                         <a
@@ -104,14 +107,12 @@ export default function SubNav(){
                             target='_blank'
                             className='cursor-pointer hover:text-amber-500'
                         >
-                            <LinkedInLogo size={18} />
+                            <LinkedInLogo size={ isMobile ? 12 : 18} />
                         </a>
 
                     </div>
                 </section>
             </section>
-
-            {/*<div className='bg-bg w-full h-2' />*/}
 
         </header>
     )
