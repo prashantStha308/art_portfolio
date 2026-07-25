@@ -57,7 +57,16 @@ export default function Sidebar(){
 		<aside
 			className="hidden md:flex flex-col justify-between items-center h-full bg-bg border-r-2 border-purple-500/75 px-4 pl-6 py-10 text-purple-500"
 		>
-			<ProfilePicture src={pfp} width={"3.5rem"} />
+			{/*<ProfilePicture src={"/self-portrait.jpeg"} width={"3.5rem"} />*/}
+				
+				<div className="mt-1 flex flex-col gap-2" >
+					<img 
+						src={"/self-portrait.jpeg"} alt="pfp"
+						className="rounded-full aspect-square object-cover w-16"
+					/>
+
+					<div className="h-0.5 w-full rounded-full bg-purple-500/45" />
+				</div>
 
 			<section className=" flex flex-col justify-center items-center gap-8" >
 

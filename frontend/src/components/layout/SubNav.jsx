@@ -34,7 +34,7 @@ const ScrollingText = ({ currentLocation }) => {
                         damping: 38,
                         mass: 0.6,
                     }}
-                    className="absolute inset-0 flex items-center gap-2 text-sm whitespace-nowrap"
+                    className="absolute inset-0 flex items-center gap-2 text-xs md:text-sm whitespace-nowrap"
                 >
                     {currentLocation}
 
@@ -77,17 +77,11 @@ export default function SubNav(){
                         >
                             <InstagramIcon size={18} />
                         </a>
-{/*
-                        <div className='text-sm flex items-center gap-2 h-full' >
-                            {currentLocation}
-
-                            <div className='h-4 w-0.5 bg-purple-500' />
-                        </div>*/}
 
                         <ScrollingText currentLocation={currentLocation} />
                     </div>
 
-                    <div className=' flex items-center gap-8 text-purple-500 pr-4' >
+                    <div className=' flex items-center gap-4 text-purple-500 pr-4' >
 
                         <a
                             href={"mailto:sthaprashant0308@gmail.com"}

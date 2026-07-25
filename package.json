@@ -1,7 +1,7 @@
 {
   "type": "module",
   "scripts": {
-    "dev": "NODE_ENV=production nodemon backend/server.js",
+    "dev": "node -v && NODE_ENV=production nodemon backend/server.js",
     "dev_offline": "NODE_ENV=development nodemon backend/server.js",
     "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend",
     "start": "NODE_ENV=production node backend/server.js"

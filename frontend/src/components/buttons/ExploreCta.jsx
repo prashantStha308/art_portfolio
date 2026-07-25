@@ -1,4 +1,6 @@
 import {motion} from "motion/react";
+import { useNavigate } from "react-router-dom";
+
 
 const parentVarient = {
 	rest: {},
@@ -40,6 +42,12 @@ const colorMap = {
 
 export default function ExploreCta(){
 
+	const navigate = useNavigate();
+
+	const handleClick = ()=>{
+		setTimeout(()=> {navigate("/project");}, 150);
+	}
+
 	return(
 		<motion.button
 			className="relative text-amber-900 text-sans w-xs px-4 py-3 isolate shrink-0 h-12"
@@ -48,12 +56,15 @@ export default function ExploreCta(){
 			whileHover="hover"
 			animate="rest"
 			whileTap="tap"
+
+			onClick={handleClick}
 		>
 			<motion.span
-				className="z-10 inline-block font-medium"
+				className="z-10 inline-block font-medium flex gap-1"
 				variants={textVarient}
 			>
-				Explore Projects
+				Explore 
+				<span className="hidden md:inline-block" >Projects</span>
 			</motion.span>
 
 			{

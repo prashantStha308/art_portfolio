@@ -20,7 +20,7 @@
 
 
 body {
-    @apply bg-bg overflow-x-hidden text-black dark:text-white ;
+    @apply bg-bg overflow-x-hidden text-black dark:text-white font-sans;
 }
 
 .page {

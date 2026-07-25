@@ -4,13 +4,12 @@ import { Link } from 'react-router-dom';
 import { MasonryPhotoAlbum } from "react-photo-album";
 import "react-photo-album/masonry.css";
 
-
-// import { PostStore } from '../store/post.store.js';
 import { useGetAllPosts } from "../queries/post.query.js";
 
 import PictureTile from "../components/tiles/PictureTile.jsx";
 import ErrorPage from "../components/ErrorPage.jsx";
 
+import BoxLoader from "../components/Loaders/BoxLoader";
 
 
 const Gallery = () => {
@@ -61,6 +60,9 @@ const Gallery = () => {
         return () => observer.unobserve(currentref);
     }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
 
+
+    console.log("posts", posts);
+
     return (
         <section className="flex flex-col gap-4 relative w-full">
 
@@ -69,15 +71,16 @@ const Gallery = () => {
                 // : isLoading ? <LoadingGallary />
                 : !posts || posts.length === 0 ?
                     <div className=" mb-5 pb-4 md:mb-0">
-                        <h1 className="text-md text-center text-gray-700">No Posts</h1>
+                        <h1 className="text-md text-center text-gray-700"> Fetching the gallery </h1>
                     </div>
                 :
                     <div className=" mb-5 pb-4 md:mb-0 px-4 py-5">
                         <MasonryPhotoAlbum
                             photos={photos}
+                            defaultContainerWidth={typeof window !== "undefined" ? window.innerWidth : 400}
                             columns={(containerWidth) => {
-                                if (containerWidth < 350) return 2; 
-                                if (containerWidth < 750) return 4;
+                                if (containerWidth < 450) return 2; 
+                                if (containerWidth < 1080) return 3;
                                 return 5;
                             }}
                             spacing={8}
@@ -99,8 +102,8 @@ const Gallery = () => {
                         />
                     </div>
             }
-            <div ref={observerRef} className="bg-transparent w-full h-12 text-center">
-                { isLoading && "Loading..."}
+            <div ref={observerRef} className="bg-transparent w-full h-12 flex justify-center">
+                { isLoading && <BoxLoader />}
             </div>
         </section>
     );

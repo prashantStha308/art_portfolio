@@ -1,4 +1,6 @@
 import {motion} from "motion/react";
+import { useNavigate } from "react-router-dom";
+
 
 const parentVarient = {
 	rest: {},
@@ -38,6 +40,13 @@ const colorMap = {
 }
 
 export default function HireMeCta(){
+
+	const navigate = useNavigate();
+
+	const handleClick = ()=>{
+		setTimeout(()=> { navigate("/") }, 150)
+	}
+
 	return(
 		<motion.button
 			className="relative text-white text-sans w-sm px-12 py-3 isolate shrink-0 h-12"

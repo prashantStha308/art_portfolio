@@ -1,4 +1,5 @@
 import colors from 'tailwindcss/colors';
+import typography from "@tailwindcss/typography";
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -9,7 +10,7 @@ export default {
   ],
   fontFamily: {
     mono: ['"Space Mono"', 'monospace'],
-    sans: ['Ubuntu', 'sans-serif'],
+    sans: ['"Nunito"','Ubuntu', 'sans-serif'],
   },
   theme: {
     extend: {
@@ -18,5 +19,7 @@ export default {
       }
     },
   },
-  plugins: [],
+  plugins: [
+    typography
+  ],
 }

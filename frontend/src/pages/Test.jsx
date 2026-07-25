@@ -1,6 +1,6 @@
 // import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 
-import BouncingLoader from "../components/Loaders/BouncingLoader";
+import BoxLoader from "../components/Loaders/BoxLoader";
 
 
 export default function Test(){
@@ -8,7 +8,7 @@ export default function Test(){
 		<section
 			className='h-full w-full mt-24 px-10'
 		>
-        	<BouncingLoader />
+        	<BoxLoader />
 
 		</section>
 
