@@ -55,11 +55,11 @@ export default function ReadMe() {
 			initial={{ opacity: 0, y: 12 }}
 			animate={{ opacity: 1, y: 0 }}
 			transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
-			className="w-full flex justify-center items-center bg-bg px-2 pr-3"
+			className="w-full flex justify-center items-center px-2 pr-3"
 		>
 
 			<article
-				className="w-full max-w-3xl border border-purple-900/45 dark:border-purple-900 rounded-lg flex flex-col dark:bg-black/15"
+				className="bg-bg w-full max-w-3xl border border-purple-900/45 dark:border-purple-900 rounded-lg flex flex-col dark:bg-black/15"
 			>
 
 				<header

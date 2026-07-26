@@ -8,8 +8,8 @@ import PostPage from "./pages/PostPage";
 
 import ResumePage from "./pages/ResumePage";
 
-import ProjectPage from "./pages/ProjectPage";
-import ProjectPostPage from "./pages/ProjectPostPage";
+// import ProjectPage from "./pages/ProjectPage";
+// import ProjectPostPage from "./pages/ProjectPostPage";
 
 import Test from "./pages/Test";
 
@@ -25,8 +25,8 @@ const AppRouter = () => {
         <Route path="/resume" element= {<ResumePage />} />
 
         <Route path="/gallery/:id" element= {<PostPage />} />
-        <Route path="/project/:id" element={ <ProjectPage /> } />
-        <Route path="/project/:id/post/:pid" element= {<ProjectPostPage />} />
+{/*        <Route path="/project/:id" element={ <ProjectPage /> } />
+        <Route path="/project/:id/post/:pid" element= {<ProjectPostPage />} />*/}
 
         {/* Hidden from users */}
 

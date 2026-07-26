@@ -48,7 +48,8 @@ export default function HireMeCta(){
 	}
 
 	return(
-		<motion.button
+		<motion.a
+			href="#contacts"
 			className="relative text-white text-sans w-sm px-12 py-3 isolate shrink-0 h-12"
 			variants={parentVarient}
 			initial="rest"
@@ -94,7 +95,7 @@ export default function HireMeCta(){
 				variants={textVarient}
 			/>
 
-		</motion.button>
+		</motion.a>
 
 	)
 }

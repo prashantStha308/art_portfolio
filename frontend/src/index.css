@@ -18,13 +18,16 @@
   transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
+html{
+    scroll-behavior: smooth;
+}
 
 body {
-    @apply bg-bg overflow-x-hidden text-black dark:text-white font-sans;
+    @apply bg-bg overflow-x-hidden text-neutral-900 dark:text-neutral-100 font-sans scroll-smooth;
 }
 
 .page {
-    @apply min-h-screen overflow-y-auto h-screen pb-20 md:pb-0;
+    @apply min-h-screen overflow-y-auto h-screen pb-20 md:pb-0 scroll-smooth;
 }
 
 .page::-webkit-scrollbar {

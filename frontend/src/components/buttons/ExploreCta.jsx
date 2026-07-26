@@ -49,7 +49,7 @@ export default function ExploreCta(){
 	}
 
 	return(
-		<motion.button
+		<motion.a
 			className="relative text-amber-900 text-sans w-xs px-4 py-3 isolate shrink-0 h-12"
 			variants={parentVarient}
 			initial="rest"
@@ -57,7 +57,8 @@ export default function ExploreCta(){
 			animate="rest"
 			whileTap="tap"
 
-			onClick={handleClick}
+			href={"#homeProjects"}
+			// onClick={handleClick}
 		>
 			<motion.span
 				className="z-10 inline-block font-medium flex gap-1"
@@ -99,7 +100,7 @@ export default function ExploreCta(){
 				variants={textVarient}
 			/>
 
-		</motion.button>
+		</motion.a>
 
 	)
 }

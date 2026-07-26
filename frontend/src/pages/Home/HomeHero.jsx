@@ -19,7 +19,7 @@ export default function HomeHero(){
 	return(
 		<section
 			id="hero"
-			className="relative flex flex-col md:flex-row justify-between items-center w-full pt-8 px-6 md:px-20 lg:px-52 gap-8 md:gap-4 isolate"
+			className="relative flex flex-col md:flex-row justify-between items-center w-full pt-8 px-6 md:px-20 lg:px-52 gap-8 md:gap-4 md:pt-28 isolate"
 		>
 			<motion.article
 				initial={{ opacity: 0, y: 12 }}
@@ -98,7 +98,7 @@ export default function HomeHero(){
 							x: 0
 						},
 						hover:{
-							x: -50
+							x: -25
 						}
 					}}
 
@@ -118,8 +118,8 @@ export default function HomeHero(){
 							y:0
 						},
 						hover:{
-							x: -50,
-							y:-50
+							x: -25,
+							y:-25
 						}
 					}}
 
@@ -140,8 +140,8 @@ export default function HomeHero(){
 							y:0
 						},
 						hover:{
-							x: 50,
-							y:-50
+							x: 25,
+							y:-25
 						}
 					}}
 
@@ -161,8 +161,8 @@ export default function HomeHero(){
 							y:0
 						},
 						hover:{
-							x: 10,
-							y: 50
+							x: 5,
+							y: 25
 						}
 					}}
 

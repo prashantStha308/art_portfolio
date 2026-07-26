@@ -1,55 +1,16 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-import {
-	Home,
-	GalleryHorizontalEnd,
-	FolderKanban,
-	FileChartColumnIncreasing,
-	// Settings
-	Sun,
-	Moon,
-} from "lucide-react"
-
-import ProfilePicture from "../UI/ProfilePicture.jsx";
 import ToggleThemeButton from "../buttons/ToggleThemeButton";
+import useNavbarLinks from "../../hooks/useNavbarLinks";
 
 
 export default function Sidebar(){
-	const location = useLocation();
-
-	const routes = [
-		{
-			name: "home", href: "/",
-			icon: <Home size={20} />,
-			isActive: location.pathname === "/",
-			// isActive: true,
-		},
-		{
-			name: "gallery",
-			href: "/gallery",
-			icon: <GalleryHorizontalEnd size={20} />,
-			isActive: location.pathname.includes("/gallery")
-		},
-		{
-			name: "projects", 
-			href: "/project",
-			icon: <FolderKanban size={20} />, 
-			isActive: location.pathname === "/project"
-		},
-		{
-			name: "resume",
-			href: "/resume",
-			icon: <FileChartColumnIncreasing size={20} />,
-			isActive: location.pathname === "/resume"
-		},
-	];
-
+	const routes = useNavbarLinks();
 
 	return(
 		<aside
 			className="hidden md:flex flex-col justify-between items-center h-full bg-bg border-r-2 border-purple-500/75 px-4 pl-6 py-10 text-purple-500"
 		>
-			{/*<ProfilePicture src={"/self-portrait.jpeg"} width={"3.5rem"} />*/}
 				
 				<div className="mt-1 flex flex-col gap-2" >
 					<img 

@@ -1,5 +1,5 @@
 // eslint-disable-next-line react/prop-types
-export default function InstagramIcon({ size = 160 }) {
+export default function InstagramIcon({ size = 24 }) {
 	return (
 		<svg
 			id="Layer_1"

@@ -48,7 +48,6 @@ const ScrollingText = ({ currentLocation }) => {
 
 
 export default function SubNav(){
-
 	const [currentLocation, setCurrentLocation] = useState("Prashant Shrestha");
 	const location = useLocation();
 
@@ -78,20 +77,20 @@ export default function SubNav(){
                             target='_blank'
                             className='cursor-pointer hover:text-amber-500 hover:opacity-75'
                         >
-                            <InstagramIcon size={ isMobile ? 12 : 18} />
+                            <InstagramIcon size={ isMobile ? 15 : 18} />
                         </a>
 
                         <ScrollingText currentLocation={currentLocation} />
                     </div>
 
-                    <div className=' flex items-center gap-4 text-purple-500 pr-4' >
+                    <div className=' flex items-center gap-4 text-purple-500 md:pr-4' >
 
                         <a
                             href={"mailto:sthaprashant0308@gmail.com"}
                             target='_blank'
                             className='cursor-pointer hover:text-amber-500'
                         >
-                            <GmailIcon size={ isMobile ? 12 : 18 } />
+                            <GmailIcon size={ isMobile ? 15 : 18 } />
                         </a>
 
                         <a
@@ -99,7 +98,7 @@ export default function SubNav(){
                             target='_blank'
                             className='cursor-pointer hover:text-amber-500'
                         >
-                            <GithubLogo size={isMobile ? 14 : 20} />
+                            <GithubLogo size={isMobile ? 17 : 20} />
                         </a>
 
                         <a
@@ -107,7 +106,7 @@ export default function SubNav(){
                             target='_blank'
                             className='cursor-pointer hover:text-amber-500'
                         >
-                            <LinkedInLogo size={ isMobile ? 12 : 18} />
+                            <LinkedInLogo size={ isMobile ? 15 : 18} />
                         </a>
 
                     </div>

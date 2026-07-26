@@ -1,5 +1,5 @@
 // eslint-disable-next-line react/prop-types
-export default function LinkedInLogo({size}){
+export default function LinkedInLogo({size = 24}){
 	return(
 		<svg height={size} width={size} version="1.1" id="Layer_1" viewBox="0 0 382 382" >
 			<path fill="currentColor" d="M347.445,0H34.555C15.471,0,0,15.471,0,34.555v312.889C0,366.529,15.471,382,34.555,382h312.889

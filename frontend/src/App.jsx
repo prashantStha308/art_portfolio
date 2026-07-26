@@ -18,7 +18,7 @@ function App() {
 				<main className="flex flex-col md:flex-row md:flex-1 h-screen overflow-hidden">
 				    <Sidebar />
 
-				    <section className="flex flex-col flex-1 page overflow-y-auto h-full w-full">
+				    <section id="scroll-container" className="flex flex-col flex-1 page overflow-y-auto h-full w-full">
 				    	<SubNav />
 				        <div className="mt-10 h-full w-full" >
 				        	<AppRouter />
