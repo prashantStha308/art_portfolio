@@ -42,32 +42,11 @@ export default function HomeContacts(){
 				Stay in touch
 			</h1>
 
-{/*			<section
-				className="bg-bg w-full max-w-3xl border border-purple-900/45 dark:border-purple-900 rounded-lg flex flex-col dark:bg-black/15"
-			>
-				<header
-					className="flex justify-between items-center px-4 py-2 border-b border-purple-900/45 dark:border-purple-900 text-xs text-neutral-700 dark:text-neutral-300 font-mono"
-				>
-					Contact Me
-				</header>
-				
-				<form
-					action="mailto:sthaprashant0308@gmail.com"
-					className=""
-				>
-					<div>
-						<label htmlFor="email">Email</label>
-					</div>
-				</form>
-
-			</section>*/}
-
-
 			<section
 				className="flex gap-8 items-center "
 			>
 				{
-					iconsMap.map((item, index) => (
+					iconsMap.map((item) => (
 						<a
 							key={item.name}
 							href={item.href}
@@ -79,7 +58,15 @@ export default function HomeContacts(){
 				}
 			</section>
 
-			<VerticallyStackingButton>
+			<VerticallyStackingButton
+				colorMap={{
+					0: "bg-purple-300 ",
+					1: "bg-purple-400 ",
+					2: "bg-purple-500 ",
+				}}
+				textColor="text-white"
+				endBoxColor="bg-purple-200"
+			>
 				<Link
 					to={"/resume"}
 					className="text-mono"

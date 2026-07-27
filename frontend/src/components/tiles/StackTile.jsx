@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useRef, useEffect } from "react";
 import useUIStore from "../../store/ui.store.js";
 
@@ -37,7 +38,7 @@ export default function StackTile({ tech }) {
 			    style={{
 			        opacity: "var(--opacity, 0)",
 			        background:
-			            "radial-gradient(200px circle at var(--x) var(--y), rgba(245,158,11,0.25), transparent 70%)",
+			            "radial-gradient(circle 200px at var(--x) var(--y), rgba(245,158,11,0.25), transparent 70%)",
 			    }}
 			/>
 			{/* glowing border that only lights up near the cursor */}

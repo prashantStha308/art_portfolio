@@ -8,7 +8,7 @@ import HomeContacts from "./Home/HomeContacts.jsx";
 
 export default function Home() {
 	return (
-		<section className="relative flex flex-col items-center gap-64 h-full w-full pl-1 scroll-smooth">
+		<section className="relative flex flex-col items-center gap-44 h-full w-full pl-1 scroll-smooth">
 
 			<HomeHero />
 
@@ -16,7 +16,7 @@ export default function Home() {
 
 			<section
 				id="tools"
-				className="w-full flex flex-col items-center gap-20"
+				className="w-full flex flex-col items-center gap-16"
 			>
 				<TechStack />
 				<ToolsUsed />

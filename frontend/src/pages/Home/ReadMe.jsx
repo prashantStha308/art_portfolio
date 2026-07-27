@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
 import {motion} from "motion/react";
 import ReactMarkdown from "react-markdown";
+
+import { useGetReadMe } from "../../queries/proxy.query.js";
 
 const colorMap = {
 	0: "bg-green-500",
@@ -9,45 +10,10 @@ const colorMap = {
 };
 
 export default function ReadMe() {
-	const [isLoading, setIsLoading] = useState(true);
-	const [readMeData, setReadMeData] = useState(null);
-	const [error, setError] = useState(null);
+	const { data, isLoading, isError, error } = useGetReadMe();
 
-	useEffect(() => {
-		let isMounted = true;
+	const readMeData = data?.replace(/<!--[\s\S]*?-->/g, "");
 
-		const fetchRawReadMe = async () => {
-			const res = await fetch(
-				"https://api.github.com/repos/prashantStha308/prashantStha308/readme",
-				{
-					method: "GET",
-					headers: { Accept: "application/vnd.github.raw" },
-				}
-			);
-			if (!res.ok) throw new Error(`GitHub API error: ${res.status}`);
-			return res.text();
-		};
-
-		(async () => {
-			try {
-				setIsLoading(true);
-				const raw = await fetchRawReadMe();
-				const stripped = raw.replace(/<!--[\s\S]*?-->/g, "");
-				if (isMounted) setReadMeData(stripped);
-
-			} catch (err) {
-				console.error("An error occurred", err);
-				if (isMounted) setError(err.message);
-				
-			} finally {
-				if (isMounted) setIsLoading(false);
-			}
-		})();
-
-		return () => {
-			isMounted = false;
-		};
-	}, []);
 
 	return (
 		<motion.section
@@ -91,8 +57,8 @@ export default function ReadMe() {
 							<div className="h-3 bg-neutral-300 dark:bg-neutral-700 rounded w-5/6" />
 							<div className="h-3 bg-neutral-300 dark:bg-neutral-700 rounded w-2/3" />
 						</div>
-					) : error ? (
-						<span className="text-red-500">⚠ Failed to load README: {error}</span>
+					) : isError ? (
+						<span className="text-red-500">⚠ Failed to load README: {error.message}</span>
 					) : (
 						<div className="prose dark:prose-invert prose-sm max-w-none">
 							<ReactMarkdown>{readMeData}</ReactMarkdown>

@@ -53,12 +53,10 @@ export default function SubNav(){
 
     const isMobile = useBreakpoint(640);
 
+
 	useEffect(()=>{
-		if( location.pathname.includes("gallery") ){
-			setCurrentLocation("Gallery");
-		}else{
-			setCurrentLocation("Prashant Shrestha");
-		}
+        const pathSegment = location.pathname.split("/");
+        setCurrentLocation( pathSegment[1] === "" ? "Prashant Shrestha" : pathSegment[1] )
 	},[location])
 
 
@@ -83,7 +81,7 @@ export default function SubNav(){
                         <ScrollingText currentLocation={currentLocation} />
                     </div>
 
-                    <div className=' flex items-center gap-4 text-purple-500 md:pr-4' >
+                    <div className=' flex items-center gap-4 md:gap-8 text-purple-500 md:pr-4' >
 
                         <a
                             href={"mailto:sthaprashant0308@gmail.com"}

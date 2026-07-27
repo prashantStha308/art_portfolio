@@ -17,12 +17,6 @@ export default function useNavbarLinks(){
 			// isActive: true,
 		},
 		{
-			name: "gallery",
-			href: "/gallery",
-			icon: <GalleryHorizontalEnd size={20} />,
-			isActive: location.pathname.includes("/gallery")
-		},
-		{
 			name: "projects", 
 			href: "/project",
 			icon: <FolderKanban size={20} />, 
@@ -33,6 +27,12 @@ export default function useNavbarLinks(){
 			href: "/resume",
 			icon: <FileChartColumnIncreasing size={20} />,
 			isActive: location.pathname === "/resume"
+		},
+		{
+			name: "gallery",
+			href: "/gallery",
+			icon: <GalleryHorizontalEnd size={20} />,
+			isActive: location.pathname.includes("/gallery")
 		},
 	];
 

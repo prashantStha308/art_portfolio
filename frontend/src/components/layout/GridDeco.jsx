@@ -5,7 +5,7 @@ import useBreakpoint from "../../hooks/useBreakpoint.jsx";
 export default function GridDeco() {
 	const isMobile = useBreakpoint();
 
-	const opacity = 0.45;
+	const opacity = 0.2;
 	const size = isMobile ? 160 : 400;
 
 	return (

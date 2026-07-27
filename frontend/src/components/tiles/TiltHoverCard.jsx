@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import * as React from 'react';
 
 export default function TiltHoverCard ({
@@ -100,7 +101,6 @@ export default function TiltHoverCard ({
 	return (
 		<div
 			ref={cardRef}
-			className="tilt-card"
 			onMouseEnter={handleMouseEnter}
 			onMouseLeave={handleMouseLeave}
 			onMouseMove={handleMouseMove}

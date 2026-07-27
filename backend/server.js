@@ -7,7 +7,7 @@ import { PORT } from "./config/env.config.js";
 
 import postRouter from "./routes/post.routes.js";
 import projectRouter from "./routes/project.routes.js";
-
+import proxyRouter from "./routes/proxy.routes.js";
 
 
 const app = express();
@@ -24,6 +24,8 @@ app.use('/storage/thumbnails', express.static(path.join(`${__dirname}/backend/`,
 
 app.use('/api/post', postRouter);
 app.use('/api/project', projectRouter);
+app.use('/api/proxy', proxyRouter);
+
 
 if(process.env.NODE_ENV === "production"){
     app.use(express.static(path.join(__dirname, "/frontend/dist")));

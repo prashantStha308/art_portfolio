@@ -4,8 +4,6 @@ const useUIStore = create((set)=>({
 	mouseX: 0,
 	mouseY: 0,
 
-	// for home scroller
-
 }))
 
 if (typeof window !== "undefined") {

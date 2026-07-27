@@ -10,7 +10,7 @@ export default function ResumePage() {
     return (
         <section className="relative" >
             <div
-                className={`absolute top-10 right-0 bg-amber-200  px-4 py-2 rounded-lg text-xs w-44 border border-amber-900/45 ${visible ? "flex" : "hidden"} flex-col gap-2`}
+                className={`absolute top-10 right-0 bg-amber-200 text-neutral-900 px-4 py-2 rounded-lg text-xs w-44 border border-amber-900/45 ${visible ? "flex" : "hidden"} flex-col gap-2`}
             >
                 <p>
                     Some fields are censored to protect myself from spam   
@@ -25,7 +25,7 @@ export default function ResumePage() {
             </div>
 
             <button
-                className={`${visible ? "hidden" : "block"} absolute top-10 right-4 bg-amber-100 w-fit rounded-sm hover:opacity-75`}
+                className={`${visible ? "hidden" : "block"} text-neutral-900 absolute top-10 right-4 bg-amber-100 w-fit rounded-sm hover:opacity-75`}
                 onClick={toggleVisibility}
             >
                 <ChevronDown />

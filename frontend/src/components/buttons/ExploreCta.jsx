@@ -34,10 +34,16 @@ const textVarient = {
 }
 
 
+// const colorMap = {
+// 	0: "bg-amber-300 ",
+// 	1: "bg-amber-200 ",
+// 	2: "bg-amber-100 ",
+// }
+
 const colorMap = {
-	0: "bg-amber-300 ",
-	1: "bg-amber-200 ",
-	2: "bg-amber-100 ",
+	0: "bg-purple-300 ",
+	1: "bg-purple-400 ",
+	2: "bg-purple-500 ",
 }
 
 export default function ExploreCta(){
@@ -50,7 +56,7 @@ export default function ExploreCta(){
 
 	return(
 		<motion.a
-			className="relative text-amber-900 text-sans w-xs px-4 py-3 isolate shrink-0 h-12"
+			className="relative text-white text-sans w-xs px-4 py-3 isolate shrink-0 h-12"
 			variants={parentVarient}
 			initial="rest"
 			whileHover="hover"
@@ -72,7 +78,7 @@ export default function ExploreCta(){
 				Array.from({length: 3}).map((_, index)=>(
 					<motion.div
 						key={index}
-						className={`absolute top-0 bottom-0 left-0 right-0 -z-10 ${colorMap[index]} border border-amber-900/45 rounded-lg `}
+						className={`absolute top-0 bottom-0 left-0 right-0 -z-10 ${colorMap[index]} border border-purple-900/45 rounded-lg `}
 						variants={{
 							rest: {
 								rotate: 0,
@@ -96,7 +102,7 @@ export default function ExploreCta(){
 			}
 
 			<motion.div
-				className={`absolute top-0 bottom-0 left-0 right-0 -z-20 bg-amber-400 border border-amber-900/45 rounded-lg `}
+				className={`absolute top-0 bottom-0 left-0 right-0 -z-20 bg-purple-200 border border-purple-900/45 rounded-lg `}
 				variants={textVarient}
 			/>
 

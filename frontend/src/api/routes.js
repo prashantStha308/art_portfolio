@@ -46,6 +46,10 @@ const ROUTES = {
 
 		UPDATE: (id) => resolveRoute("/api/project", id),
 		DELETE: (id) => resolveRoute("/api/project", id)
+	},
+	PROXY:{
+		README: () => "/api/proxy/readMe",
+		REPOS: () => "api/proxy/repos"
 	}
 
 }
