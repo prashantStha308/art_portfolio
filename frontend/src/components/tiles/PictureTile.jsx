@@ -33,7 +33,7 @@ const PictureTile = ({ item , fade = false , selectMode = false , selectedList }
 
 
 	return (
-		<div className="relative group border border-purple-700/45 rounded-xl transition-all ease-in-out duration-150">
+		<div className="relative group border border-purple-700/45 rounded-xl transition-all ease-in-out duration-150 isolate">
 			{
 				fade ?
 				<section className="relative object-contain group">

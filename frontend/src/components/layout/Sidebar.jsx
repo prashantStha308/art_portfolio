@@ -9,7 +9,7 @@ export default function Sidebar(){
 
 	return(
 		<aside
-			className="hidden md:flex flex-col justify-between items-center h-full bg-bg border-r-2 border-purple-500/75 px-4 pl-6 py-10 text-purple-500"
+			className="hidden md:flex flex-col justify-between items-center h-full bg-bg border-r-2 border-purple-500/75 px-4 pl-6 py-10 text-purple-500 z-20"
 		>
 				
 				<div className="mt-1 flex flex-col gap-2" >

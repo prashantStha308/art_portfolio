@@ -1,40 +1,49 @@
 import { useParams } from 'react-router-dom'
-import { useEffect, useState } from 'react';
 
-import { PostStore } from '../store/post.store';
+import { useGetPostById } from "../queries/post.query.js";
 
-import Loading from '../components/Loaders/Loader';
+import BoxLoader from "../components/Loaders/BoxLoader";
 
 const PostPage = () => {
-    const {id} = useParams();
-    const { getPostById } = PostStore();
-    const [ loading , setLoading ] = useState(true);
-    const [ post , setPost ] = useState();
+	const {id} = useParams();
+	const { data: post, isLoading, isError, error } = useGetPostById(id);
 
-    if (typeof id !== 'string' ) {
-      console.log("Invalid parameter");
-    }
+	const aspectRatio = (post?.width && post?.height) ? post?.width / post?.height : undefined
 
-    useEffect( ()=>{
-      const fetchPost = async ()=>{
-        setLoading(true);
-        const data = await getPostById(id);
-        setPost(data.data);
-        setLoading(false);
-      }
-      fetchPost();
-    },[getPostById , id] );
+	const imgElement =(
+		<section
+			className="relative w-full overflow-hidden rounded-xl"
+			style={{
+				aspectRatio,
+				backgroundColor: post?.color || "#e5e5e5",
+			}}
+		>
+			<img
+				className={`object-cover object-center thumb-img rounded-xl group-hover:scale-105 transition-all ease-in-out duration-150`}
+				style={{
+					transition: 'all 0.15s ease-in',
+				}}
+				src={post?.thumbnail}
+				loading="lazy"
+			/>
+		</section>
+	)
 
+	return (
+		<section>
+			<header> id: {id}  </header>
+			{
+				isLoading && <BoxLoader />
+			}
+			<div>
+				<h1>
+					{post?.title}
+				</h1>
 
-  return (
-    <div>
-      <header> id: {id}  </header>
-      {
-        loading && <Loading />
-      }
-      <img src={post?.image?.src || post?.imgUrl} alt={post?.title + " thumbnail"} loading='lazy' />
-    </div>
-  )
+				{imgElement}
+			</div>
+		</section>
+	)
 }
 
 export default PostPage;

@@ -70,8 +70,8 @@ export default function ExploreCta(){
 				className="z-10 inline-block font-medium flex gap-1"
 				variants={textVarient}
 			>
-				Explore 
-				<span className="hidden md:inline-block" >Projects</span>
+				<span className="hidden md:inline-block" > Explore </span> 
+				Projects
 			</motion.span>
 
 			{

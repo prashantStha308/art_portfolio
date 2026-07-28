@@ -1,15 +1,21 @@
 import { useEffect, useRef , useMemo } from 'react';
-import { Link } from 'react-router-dom';
+import { AnimatePresence } from 'motion/react';
 
 import { MasonryPhotoAlbum } from "react-photo-album";
 import "react-photo-album/masonry.css";
 
 import { useGetAllPosts } from "../queries/post.query.js";
+import useUIStore , {
+    toggleModalVisbility,
+    setModalPostId
+} from '../store/ui.store.js';
 
 import PictureTile from "../components/tiles/PictureTile.jsx";
 import ErrorPage from "../components/ErrorPage.jsx";
 
 import BoxLoader from "../components/Loaders/BoxLoader";
+
+import PostModal from "../components/UI/PostModal.jsx"
 
 
 const Gallery = () => {
@@ -25,7 +31,17 @@ const Gallery = () => {
     } = useGetAllPosts(10);
     const posts = data?.pages.flatMap((page) => page.post) ?? [];
 
-    // build a lookup map once per posts change, avoids O(n) .find() per tile in render
+    const isModalOpen = useUIStore(store => store.isModalOpen);
+
+
+    const handleClick = (postId)=>{
+
+        console.log("CLicked:", postId)
+
+        setModalPostId(postId);
+        toggleModalVisbility();
+    }
+
     const postsById = useMemo(() => {
         const map = new Map();
         posts.forEach((item) => map.set(item._id, item));
@@ -61,10 +77,11 @@ const Gallery = () => {
     }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
 
 
-    console.log("posts", posts);
-
     return (
         <section className="flex flex-col gap-4 relative w-full">
+            <AnimatePresence>
+                { isModalOpen && <PostModal />}
+            </AnimatePresence>
 
             {
                 isError ? <ErrorPage message={error} />
@@ -90,13 +107,14 @@ const Gallery = () => {
                                     const item = postsById.get(photo.key);
                                     if (!item) return null;
                                     return (
-                                        <Link
+                                        <button
                                             key={photo.key}
                                             to={`/gallery/${item._id}`}
                                             className='transition-all ease-in-out duration-150'
+                                            onClick={() => handleClick(photo.key)}
                                         >
                                             <PictureTile item={item} fade={true} />
-                                        </Link>
+                                        </button>
                                     );
                                 },
                             }}

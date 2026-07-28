@@ -1,6 +1,6 @@
 import { GITHUB_TOKEN } from "../config/env.config.js"
 
-export const getReadMe = async(req,res) => {
+export const getReadMe = async(req,res, next) => {
 	try{
 		const response = await fetch("https://api.github.com/repos/prashantStha308/prashantStha308/readme",
 			{

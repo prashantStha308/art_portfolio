@@ -45,7 +45,7 @@ export default function ProjectTile({ project }){
                     {finalizedProject?.name}
                 </a>
 
-                <p className="text-xs" >
+                <p className="text-xs break-words" >
                     {finalizedProject?.description}
                 </p>
 

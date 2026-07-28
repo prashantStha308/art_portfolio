@@ -2,6 +2,7 @@ import {motion} from "motion/react";
 import ReactMarkdown from "react-markdown";
 
 import { useGetReadMe } from "../../queries/proxy.query.js";
+import SkeletonBlock from "../../components/Loaders/SkeletonBlock.jsx";
 
 const colorMap = {
 	0: "bg-green-500",
@@ -52,10 +53,15 @@ export default function ReadMe() {
 				<article className="text-sm px-4 py-3">
 					{isLoading ? (
 						<div className="space-y-2 animate-pulse">
-							<div className="h-3 bg-neutral-300 dark:bg-neutral-700 rounded w-3/4" />
+							<SkeletonBlock className="h-3 w-3/4" />
+							<SkeletonBlock className="h-3 w-1/2" />
+							<SkeletonBlock className="h-3 w-5/6" />
+							<SkeletonBlock className="h-3 w-2/3" />
+
+{/*							<div className="h-3 bg-neutral-300 dark:bg-neutral-700 rounded w-3/4" />
 							<div className="h-3 bg-neutral-300 dark:bg-neutral-700 rounded w-1/2" />
 							<div className="h-3 bg-neutral-300 dark:bg-neutral-700 rounded w-5/6" />
-							<div className="h-3 bg-neutral-300 dark:bg-neutral-700 rounded w-2/3" />
+							<div className="h-3 bg-neutral-300 dark:bg-neutral-700 rounded w-2/3" />*/}
 						</div>
 					) : isError ? (
 						<span className="text-red-500">⚠ Failed to load README: {error.message}</span>
