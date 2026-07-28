@@ -63,6 +63,7 @@ export default function ProjectTile({ project }){
 
                     <a
                         href={`https://www.github.com/${finalizedProject?.author}/${finalizedProject?.name}`}
+                        target="_blank"
                         className="text-xs bg-purple-500 opacity-100 hover:opacity-75 px-4 py-1 rounded-sm text-neutral-100 transition-all ease-in-out duration-150"
                     >
                         View Source
