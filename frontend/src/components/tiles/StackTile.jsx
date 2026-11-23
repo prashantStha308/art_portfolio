@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
 import { useRef, useEffect } from "react";
+import {motion} from "motion/react";
 import useUIStore from "../../store/ui.store.js";
 
 
-export default function StackTile({ tech }) {
+export default function StackTile({ tech, varient }) {
     const containerRef = useRef();
 
     useEffect(() => {
@@ -25,12 +26,13 @@ export default function StackTile({ tech }) {
     }, []);
 
     return (
-        <a
+        <motion.a
             ref={containerRef}
             href={tech.href ?? null}
             target= "_blank"
             
-            className="h-14 md:h-24 group relative flex gap-4 items-center border border-purple-500/45 backdrop-blur-3xl rounded-lg px-4 md:px-8  bg-bg/40 text-neutral-700 dark:text-neutral-300 overflow-hidden cursor-pointer"
+            variants={varient}
+            className="z-[99] h-14 md:h-24 group relative flex gap-4 items-center border border-purple-500/45 backdrop-blur-3xl rounded-lg px-4 md:px-8  bg-bg/40 text-neutral-700 dark:text-neutral-300 overflow-hidden cursor-pointer"
         >
 			{/* tracks cursor */}
 			<div
@@ -78,6 +80,6 @@ export default function StackTile({ tech }) {
             }
 
             <p className="text-sm md:text-base font-medium relative z-10">{tech.name}</p>
-        </a>
+        </motion.a>
     );
 };

@@ -12,13 +12,12 @@ const colorMap = {
 
 export default function ReadMe() {
 	const { data, isLoading, isError, error } = useGetReadMe();
-
 	const readMeData = data?.replace(/<!--[\s\S]*?-->/g, "");
 
 
 	return (
 		<motion.section
-			id="readMe"
+			id="About-me"
 			initial={{ opacity: 0, y: 12 }}
 			animate={{ opacity: 1, y: 0 }}
 			transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
@@ -26,7 +25,7 @@ export default function ReadMe() {
 		>
 
 			<article
-				className="bg-bg w-full max-w-3xl border border-purple-900/45 dark:border-purple-900 rounded-lg flex flex-col dark:bg-black/15"
+				className="z-[99] bg-bg w-full max-w-3xl border border-purple-900/45 dark:border-purple-900 rounded-lg flex flex-col"
 			>
 
 				<header

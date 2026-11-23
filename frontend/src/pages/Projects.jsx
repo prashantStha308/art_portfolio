@@ -127,13 +127,13 @@ export default function Projects(){
             <section
                 className="pt-24 pb-44 flex flex-col items-center gap-16"
             >
-                <h1 className="font-mono font-black text-purple-500 text-2xl" >
+                <h1 className="text-center font-mono font-black text-purple-500 text-2xl" >
                     And many more to come...
                 </h1>
 
                 <VerticallyStackingButton>
                     <a href="https://www.github.com/prashantStha308">
-                        Visit my github
+                        Visit my Github
                     </a>
                 </VerticallyStackingButton>
 

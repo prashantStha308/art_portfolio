@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-
+import { motion } from "motion/react";
 
 const colorMap = {
     0: "bg-green-500",
@@ -7,7 +7,7 @@ const colorMap = {
     2: "bg-red-500",
 };
 
-export default function ProjectTile({ project }){
+export default function ProjectTile({ project, variants={} }){
 
     const finalizedProject = {
         ...project,
@@ -16,8 +16,9 @@ export default function ProjectTile({ project }){
 
 
     return(
-        <div
-            className="flex flex-col gap-1 w-72 md:w-96 border border-purple-900/45 dark:border-purple-900 rounded-lg bg-bg cursor-pointer"
+        <motion.div
+            variants={variants}
+            className="z-[99] flex flex-col gap-1 w-72 md:w-96 border border-purple-900/45 dark:border-purple-900 rounded-lg bg-bg cursor-pointer"
         >
 
             <header
@@ -71,6 +72,6 @@ export default function ProjectTile({ project }){
                 </div>
 
             </article>
-        </div>
+        </motion.div>
     )
 }

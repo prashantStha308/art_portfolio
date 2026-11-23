@@ -1,5 +1,6 @@
 // https://pinned.berrysauce.dev/get/prashantStha308
 import {Link} from "react-router-dom";
+import {motion} from "motion/react";
 
 import { useGetPinnedRepos } from "../../queries/proxy.query.js";
 
@@ -8,20 +9,59 @@ import ProjectTile from "../../components/tiles/ProjectTile"
 import VerticallyStackingButton from "../../components/buttons/VerticallyStackingButton";
 
 
+
+const staggeringParent ={
+	hidden: { opacity: 0 },
+	visible: {
+		opacity: 1,
+		transition: {
+			staggerChildren: 0.1,
+			delayChildren: 0.2,
+		},
+	},
+};
+
+const staggeringChildren = {
+	hidden: { opacity: 0, y: 16 },
+	visible: { opacity: 1, y: 0 },
+}
+
+
 export default function HomeProjects(){
 	const { data:projects, isLoading, isError, error } = useGetPinnedRepos();
 
 
 	return(
 		<section
-			id="homeProjects"
+			id="Projects"
 			className="w-full flex flex-col gap-8 justify-center items-center px-2 pr-3"
 		>
-			<h1 className="text-2xl font-black font-mono text-purple-500" >
-				Projects
-			</h1>
+			<motion.h1
 
-			<section
+				initial={{
+					opacity: 0,
+					y: 16
+				}}
+
+				whileInView={{
+					opacity: 1, y:0
+				}}
+
+				transition={{
+					type: "spring",
+					damping: 10,
+					stiffness: 80
+				}}
+
+				className="text-2xl font-black font-mono text-purple-500"
+			>
+				Projects
+			</motion.h1>
+
+			<motion.section
+				variants={staggeringParent}
+				initial={"hidden"}
+				whileInView={"visible"}
 				className="flex flex-wrap justify-center gap-2 md:gap-8 md:px-8"
 			>
 				{
@@ -31,22 +71,22 @@ export default function HomeProjects(){
 						</div>
 					) :
 					isError ? (
-						<section>
+						<>
 							Error occured: {error.message}
-						</section>
+						</>
 					) : (
 						projects.length === 0 ?(
 							<p>
-								No Proects found
+								No Projects found
 							</p>
 						) :(
 							projects?.slice(0,4)?.map((project, index) => (
-								<ProjectTile key={index} project={project} />
+								<ProjectTile key={index} project={project} variants={staggeringChildren} />
 							))
 						)
 					)
 				}
-			</section>
+			</motion.section>
 
 			<VerticallyStackingButton
 				direction="right"

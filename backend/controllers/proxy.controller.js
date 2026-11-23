@@ -10,6 +10,13 @@ export const getReadMe = async(req,res, next) => {
 				},
 			}
 		);
+
+		if (!response.ok) {
+			const err = new Error(`GitHub API error: ${response.status}`);
+			err.statusCode = response.status;
+			throw err;
+		}
+
 		const data = await response.text();
 		res.json(data);
 

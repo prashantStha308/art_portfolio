@@ -63,7 +63,7 @@ export default function ExploreCta(){
 			animate="rest"
 			whileTap="tap"
 
-			href={"#homeProjects"}
+			href={"#Projects"}
 			// onClick={handleClick}
 		>
 			<motion.span

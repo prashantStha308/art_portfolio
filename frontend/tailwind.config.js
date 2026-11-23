@@ -8,12 +8,12 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  fontFamily: {
-    mono: ['"Space Mono"', 'monospace'],
-    sans: ['"Nunito"','Ubuntu', 'sans-serif'],
-  },
   theme: {
     extend: {
+      fontFamily: {
+        mono: ['"Space Mono"', 'monospace'],
+        sans: ['"Nunito"','Ubuntu', 'sans-serif'],
+      },
       colors:{
         bg: 'rgb(var(--color-bg) / <alpha-value>)',
       }

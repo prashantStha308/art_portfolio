@@ -55,7 +55,7 @@ export default function HireMeCta(){
 
 	return(
 		<motion.a
-			href="#contacts"
+			href="#contact"
 			className="relative text-amber-900 text-sans w-sm px-12 py-3 isolate shrink-0 h-12"
 			variants={parentVarient}
 			initial="rest"
@@ -74,7 +74,7 @@ export default function HireMeCta(){
 				Array.from({length: 3}).map((_, index)=>(
 					<motion.div
 						key={index}
-						className={`absolute top-0 bottom-0 left-0 right-0 -z-10 ${colorMap[index]} border border-purple-900/45 rounded-lg `}
+						className={`absolute top-0 bottom-0 left-0 right-0 -z-10 ${colorMap[index]} border border-amber-900/45 rounded-lg `}
 						variants={{
 							rest: {
 								rotate: 0,

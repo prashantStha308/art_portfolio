@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { motion } from "motion/react";
 
 import GithubLogo from "../../components/icons/GithubLogo";
 import GmailIcon from "../../components/icons/GmailIcon";
@@ -29,34 +30,72 @@ const iconsMap = [
 		icon: <InstagramIcon size={36} />,
 		href: "https://www.instagram.com/pop__sickle"
 	},
-]
+];
+
+const staggeringParent ={
+	hidden: { opacity: 0 },
+	visible: {
+		opacity: 1,
+		transition: {
+			staggerChildren: 0.1,
+			delayChildren: 0.2,
+		},
+	},
+};
+
+const staggeringChildren = {
+	hidden: { opacity: 0, y: 16 },
+	visible: { opacity: 1, y: 0 },
+}
+
 
 export default function HomeContacts(){
 
 	return(
 		<section
-			id="contacts"
+			id="contact"
 			className="w-full flex flex-col gap-16 justify-center items-center px-2 pr-3 pb-44 "
 		>
-			<h1 className="text-2xl font-black font-mono text-purple-500" >
-				Stay in touch
-			</h1>
+			<motion.h1
+				initial={{
+					opacity: 0,
+					y: 16
+				}}
 
-			<section
+				whileInView={{
+					opacity: 1, y:0
+				}}
+
+				transition={{
+					type: "spring",
+					damping: 10,
+					stiffness: 80
+				}}
+				
+				className="text-2xl font-black font-mono text-purple-500"
+			>
+				Stay in touch
+			</motion.h1>
+
+			<motion.section
 				className="flex gap-8 items-center "
+				variants={staggeringParent}
+				initial={"hidden"}
+				whileInView={"visible"}
 			>
 				{
 					iconsMap.map((item) => (
-						<a
+						<motion.a
+							variants={staggeringChildren}
 							key={item.name}
 							href={item.href}
 							className="text-purple-500 hover:text-amber-500"
 						>
 							{item.icon}
-						</a>
+						</motion.a>
 					))
 				}
-			</section>
+			</motion.section>
 
 			<VerticallyStackingButton
 				colorMap={{
