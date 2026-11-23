@@ -74,7 +74,7 @@ export default function HomeContacts(){
 				
 				className="text-2xl font-black font-mono text-purple-500"
 			>
-				Stay in touch
+				Get in touch
 			</motion.h1>
 
 			<motion.section
@@ -89,6 +89,7 @@ export default function HomeContacts(){
 							variants={staggeringChildren}
 							key={item.name}
 							href={item.href}
+							target="_blank"
 							className="text-purple-500 hover:text-amber-500"
 						>
 							{item.icon}

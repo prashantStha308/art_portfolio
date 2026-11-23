@@ -133,12 +133,14 @@ export default transition (
                         And many more to come...
                     </h1>
 
-                    <VerticallyStackingButton>
-                        <a href="https://www.github.com/prashantStha308">
-                            Visit my Github
-                        </a>
-                    </VerticallyStackingButton>
-
+                    <a
+                        target="_blank"
+                        href="https://www.github.com/prashantStha308"
+                    >
+                        <VerticallyStackingButton>
+                                Visit my Github
+                        </VerticallyStackingButton>
+                    </a>
                 </section>
 
             </section>

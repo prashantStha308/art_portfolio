@@ -34,7 +34,7 @@ function transition(Component){
 				<Component />
 
 				<motion.div
-					className="slide-in bg-purple-950 relative z-[999]"
+					className="slide-in bg-purple-900 relative z-[999]"
 					initial={{scaleY: 0}}
 					animate={{scaleY: 0}}
 					exit={{scaleY: 1}}
@@ -44,7 +44,7 @@ function transition(Component){
 				/>
 
 				<motion.div
-					className="slide-out bg-purple-950 relative z-[999]"
+					className="slide-out bg-purple-900 relative z-[999]"
 					initial={{scaleY: 1}}
 					animate={{scaleY: 0}}
 					exit={{scaleY: 0}}

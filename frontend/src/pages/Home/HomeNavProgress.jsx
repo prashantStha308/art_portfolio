@@ -50,9 +50,15 @@ export default function HomeNavProgress({ parentRef }){
 						<div key={n.id} className="flex flex-col justify-center items-center text-sm">
 							<a
 								href={`#${n.id}`}
-								className={`capitalize ${n.active && "text-purple-500 font-bold scale-110"} hover:text-purple-800 dark:hover:text-purple-400 transition-all ease-in-out `}
+								className={`capitalize flex flex-col gap-1 w-full justify-center items-center ${n.active && "text-purple-500"} hover:text-purple-800 dark:hover:text-purple-400 transition-all ease-in-out `}
 							>
-								{n.id}
+								<span className="text-xs w-full text-right" >
+									0{i+1}
+								</span>
+								
+								<span className={`${ n.active && "font-bold scale-110" } transition-all ease-in-out`} >
+									{n.id}
+								</span>
 							</a>
 							{ i < nav.length - 1 && (
 								<span className="w-px h-12 my-2 ml-2 bg-current opacity-40" />

@@ -10,7 +10,7 @@ export default function GridDeco() {
 
 	return (
 		<div
-			className="fixed inset-0 h-screen w-screen -z-20 pointer-events-none opacity-45"
+			className="fixed inset-0 h-screen w-screen -z-[9999] pointer-events-none opacity-45"
 			style={{
 				backgroundImage: `
 					linear-gradient(to right, rgb(var(--grid-line-color) / ${opacity}) 1px, transparent 1px),

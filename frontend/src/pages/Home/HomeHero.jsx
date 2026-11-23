@@ -19,7 +19,7 @@ export default function HomeHero(){
 				className="relative flex flex-col gap-2 justify-start order-2 md:order-1 z-10"
 			>
 				<article className="flex flex-col gap-1" >
-					<span className="text-neutral-900/65 dark:text-neutral-100/45 text-sm">
+					<span className="text-neutral-900/65 dark:text-neutral-100/45 text-base">
 						Full-stack developer | Visual design enthusiast
 					</span>
 					<h1 className="text-5xl text-purple-500 font-bold font-mono">
@@ -27,7 +27,7 @@ export default function HomeHero(){
 					</h1>
 				</article>
 
-				<p className="text-neutral-700 dark:text-neutral-300 max-w-md mt-2 pl-2 pb-20">
+				<p className="text-lg text-neutral-700 dark:text-neutral-300 max-w-md mt-2 pl-2 pb-20">
 					I build interactive web experiences and occasionally draw things
 					that don&apos;t move.
 				</p>

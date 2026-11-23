@@ -28,7 +28,7 @@ export default function Sidebar(){
 					routes.map((item, index) => (
 						<Link
 							key={index} to={item.href}
-							className={`flex flex-col items-center ${item.isActive ? "bg-purple-500 text-white" : " hover:bg-purple-500/40 hover:text-white"}  p-3 rounded-lg transition-all ease-in duration-150`}
+							className={`flex flex-col items-center ${item.isActive ? "bg-purple-500 text-white" : " hover:bg-purple-500/40 hover:text-white"}  p-3 rounded-md transition-all ease-in duration-150`}
 						>
 							{item.icon}
 							<span className="capitalize text-[0.6rem]" >
