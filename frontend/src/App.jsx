@@ -9,30 +9,25 @@ import SubNav from "./components/layout/SubNav.jsx";
 import GridDeco from "./components/layout/GridDeco.jsx";
 
 function App() {
-
 	return (
-		<>
-			<BrowserRouter>
-				<QueryProvider>
+		<BrowserRouter>
+			<QueryProvider>
+					<main className="flex flex-col md:flex-row md:flex-1 h-screen overflow-hidden">
+					    <Sidebar />
 
-				<main className="flex flex-col md:flex-row md:flex-1 h-screen overflow-hidden">
-				    <Sidebar />
+					    <section id="scroll-container" className="flex flex-col flex-1 page overflow-y-auto h-full w-full">
+					    	<SubNav />
+					        <div className="mt-10 h-full w-full" >
+					        	<AppRouter />
+					        </div>
+					    </section>
+					    
+					    <BottomNavbar />
 
-				    <section id="scroll-container" className="flex flex-col flex-1 page overflow-y-auto h-full w-full">
-				    	<SubNav />
-				        <div className="mt-10 h-full w-full" >
-				        	<AppRouter />
-				        </div>
-				    </section>
-				    
-				    <BottomNavbar />
-
-					<GridDeco />				    
-				</main>
-
-				</QueryProvider>
-			</BrowserRouter>
-		</>
+						<GridDeco />				    
+					</main>
+			</QueryProvider>
+		</BrowserRouter>
 	);
 }
 

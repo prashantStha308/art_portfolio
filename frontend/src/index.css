@@ -103,3 +103,13 @@ body {
     margin-top: 0;
   }
 }
+
+
+/* transition styles */
+.slide-in{
+    @apply fixed top-0 left-0 w-full min-h-screen origin-bottom;
+}
+
+.slide-out{
+    @apply fixed top-0 left-0 w-full min-h-screen origin-top;
+}

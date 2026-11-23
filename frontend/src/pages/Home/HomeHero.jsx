@@ -52,7 +52,7 @@ export default function HomeHero(){
 					className=" relative w-56 h-56 md:w-64 md:h-64 overflow-hidden  shrink-0"
 				>
 					<img
-						src="/self-portrait_2.webp"
+						src="https://res.cloudinary.com/dww0antkw/image/upload/v1795455284/self_face_transp_x2mrdm.webp"
 						alt="profileImage"
 						className="h-full w-full object-cover"
 					/>
